@@ -59,6 +59,59 @@ function stopMessageLiveLocation(params) { // https://core.telegram.org/bots/api
 }
 
 /**
+ * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * @param {Object} params editMessageText peremeters as object
+ * @return {Object} api result
+ */
+function editMessageText(params) { // https://core.telegram.org/bots/api#editmessagetext
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * @param {Object} params editMessageCaption peremeters as object
+ * @return {Object} api result
+ */
+function editMessageCaption(params) { // https://core.telegram.org/bots/api#editmessagecaption
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded. Use a previously uploaded file via its file_id or specify a URL. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
+ * @param {Object} params editMessageMedia peremeters as object
+ * @return {Object} api result
+ */
+function editMessageMedia(params) { // https://core.telegram.org/bots/api#editmessagemedia
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+ * @param {Object} params editMessageReplyMarkup peremeters as object
+ * @return {Object} api result
+ */
+function editMessageReplyMarkup(params) { // https://core.telegram.org/bots/api#editmessagereplymarkup
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to delete a message, including service messages, with the following limitations:
+- A message can only be deleted if it was sent less than 48 hours ago.
+- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.
+- Bots can delete outgoing messages in private chats, groups, and supergroups.
+- Bots can delete incoming messages in private chats.
+- Bots granted can_post_messages permissions can delete outgoing messages in channels.
+- If the bot is an administrator of a group, it can delete any message there.
+- If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
+Returns True on success.
+ * @param {Object} params deleteMessage peremeters as object
+ * @return {Object} api result
+ */
+function deleteMessage(params) { // https://core.telegram.org/bots/api#deletemessage
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
  * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
  * @param {Object} params sendChatAction peremeters as object
  * @return {Object} api result
@@ -373,6 +426,15 @@ function sendPoll(params) { // https://core.telegram.org/bots/api#sendpoll
 }
 
 /**
+ * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned.
+ * @param {Object} params stopPoll peremeters as object
+ * @return {Object} api result
+ */
+function stopPoll(params) { // https://core.telegram.org/bots/api#stoppoll
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
  * @param {Object} params sendDice peremeters as object
  * @return {Object} api result
@@ -449,6 +511,108 @@ function close() { // https://core.telegram.org/bots/api#close
   throw new Error("this method should not call direct, please call auth method.");
 }
 
+// Webhook
+
+/**
+ * Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
+ * @param {Object} params setWebhook peremeters as object
+ * @return {Object} api result
+ */
+function setWebhook(params) { // https://core.telegram.org/bots/api#setwebhook
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
+ * @param {Object} params deleteWebhook peremeters as object
+ * @return {Object} api result
+ */
+function deleteWebhook(params) { // https://core.telegram.org/bots/api#deletewebhook
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to get current webhook status. Requires no parameters. On success, returns a WebhookInfo object. If the bot is using getUpdates, will return an object with the url field empty.
+ * @return {Object} api result
+ */
+function getWebhookInfo() { // https://core.telegram.org/bots/api#getwebhookinfo
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+// Stickers
+
+/**
+ * Use this method to send static .WEBP or animated .TGS stickers. On success, the sent Message is returned.
+ * @param {Object} params sendSticker peremeters as object
+ * @return {Object} api result
+ */
+function sendSticker(params) { // https://core.telegram.org/bots/api#sendsticker
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to get a sticker set. On success, a StickerSet object is returned.
+ * @param {Object} params getStickerSet peremeters as object
+ * @return {Object} api result
+ */
+function getStickerSet(params) { // https://core.telegram.org/bots/api#getstickerset
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to upload a .PNG file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
+ * @param {Object} params uploadStickerFile peremeters as object
+ * @return {Object} api result
+ */
+function uploadStickerFile(params) { // https://core.telegram.org/bots/api#uploadstickerfile
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker or tgs_sticker. Returns True on success.
+ * @param {Object} params createNewStickerSet peremeters as object
+ * @return {Object} api result
+ */
+function createNewStickerSet(params) { // https://core.telegram.org/bots/api#createnewstickerset
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker or tgs_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
+ * @param {Object} params addStickerToSet peremeters as object
+ * @return {Object} api result
+ */
+function addStickerToSet(params) { // https://core.telegram.org/bots/api#addstickertoset
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
+ * @param {Object} params setStickerPositionInSet peremeters as object
+ * @return {Object} api result
+ */
+function setStickerPositionInSet(params) { // https://core.telegram.org/bots/api#setstickerpositioninset
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Returns True on success.
+ * @param {Object} params setStickerSetThumb peremeters as object
+ * @return {Object} api result
+ */
+function setStickerSetThumb(params) { // https://core.telegram.org/bots/api#setstickersetthumb
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
+/**
+ * Use this method to delete a sticker from a set created by the bot. Returns True on success.
+ * @param {Object} params deleteStickerFromSet peremeters as object
+ * @return {Object} api result
+ */
+function deleteStickerFromSet(params) { // https://core.telegram.org/bots/api#deletestickerfromset
+  throw new Error("this method should not call direct, please call auth method.");
+}
+
 //-----------------------------------------
 
 var _this_ = this,
@@ -468,11 +632,17 @@ var _this_ = this,
       this.token = token;
 
       // Message
+
       _this_.sendMessage = __bind_(_this_.sendMessage, this);
       _this_.forwardMessage = __bind_(_this_.forwardMessage, this);
       _this_.copyMessage = __bind_(_this_.copyMessage, this);
       _this_.editMessageLiveLocation = __bind_(_this_.editMessageLiveLocation, this);
       _this_.stopMessageLiveLocation = __bind_(_this_.stopMessageLiveLocation, this);
+      _this_.editMessageText = __bind_(_this_.editMessageText, this);
+      _this_.editMessageCaption = __bind_(_this_.editMessageCaption, this);
+      _this_.editMessageMedia = __bind_(_this_.editMessageMedia, this);
+      _this_.editMessageReplyMarkup = __bind_(_this_.editMessageReplyMarkup, this);
+      _this_.deleteMessage = __bind_(_this_.deleteMessage, this);
 
       // Chat
 
@@ -514,6 +684,7 @@ var _this_ = this,
       _this_.sendVenue = __bind_(_this_.sendVenue, this);
       _this_.sendContact = __bind_(_this_.sendContact, this);
       _this_.sendPoll = __bind_(_this_.sendPoll, this);
+      _this_.stopPoll = __bind_(_this_.stopPoll, this);
       _this_.sendDice = __bind_(_this_.sendDice, this);
       _this_.getUserProfilePhotos = __bind_(_this_.getUserProfilePhotos, this);
       _this_.getFile = __bind_(_this_.getFile, this);
@@ -523,6 +694,23 @@ var _this_ = this,
       _this_.getMe = __bind_(_this_.getMe, this);
       _this_.logOut = __bind_(_this_.logOut, this);
       _this_.close = __bind_(_this_.close, this);
+
+      // Webhook
+
+      _this_.setWebhook = __bind_(_this_.setWebhook, this);
+      _this_.deleteWebhook = __bind_(_this_.deleteWebhook, this);
+      _this_.getWebhookInfo = __bind_(_this_.getWebhookInfo, this);
+
+      // Stickers
+
+      _this_.sendSticker = __bind_(_this_.sendSticker, this);
+      _this_.getStickerSet = __bind_(_this_.getStickerSet, this);
+      _this_.uploadStickerFile = __bind_(_this_.uploadStickerFile, this);
+      _this_.createNewStickerSet = __bind_(_this_.createNewStickerSet, this);
+      _this_.addStickerToSet = __bind_(_this_.addStickerToSet, this);
+      _this_.setStickerPositionInSet = __bind_(_this_.setStickerPositionInSet, this);
+      _this_.setStickerSetThumb = __bind_(_this_.setStickerSetThumb, this);
+      _this_.deleteStickerFromSet = __bind_(_this_.deleteStickerFromSet, this);
     }
 
     // Message
@@ -542,7 +730,21 @@ var _this_ = this,
     TelegramApp.prototype.stopMessageLiveLocation = function (obj) {
       return new Message(this.token).stopMessageLiveLocation(obj);
     };
-    
+    TelegramApp.prototype.editMessageText = function (obj) {
+      return new Message(this.token).editMessageText(obj);
+    };
+    TelegramApp.prototype.editMessageCaption = function (obj) {
+      return new Message(this.token).editMessageCaption(obj);
+    };
+    TelegramApp.prototype.editMessageMedia = function (obj) {
+      return new Message(this.token).editMessageMedia(obj);
+    };
+    TelegramApp.prototype.editMessageReplyMarkup = function (obj) {
+      return new Message(this.token).editMessageReplyMarkup(obj);
+    };
+    TelegramApp.prototype.deleteMessage = function (obj) {
+      return new Message(this.token).deleteMessage(obj);
+    };
     // Chat
 
     TelegramApp.prototype.sendChatAction = function (obj) {
@@ -614,8 +816,8 @@ var _this_ = this,
 
     // Other
 
-    TelegramApp.prototype.getUpdates = function () {
-      return new Other(this.token).getUpdates();
+    TelegramApp.prototype.getUpdates = function (obj) {
+      return new Other(this.token).getUpdates(obj);
     };
     TelegramApp.prototype.sendPhoto = function (obj) {
       return new Other(this.token).sendPhoto(obj);
@@ -636,10 +838,10 @@ var _this_ = this,
       return new Other(this.token).sendVoice(obj);
     };
     TelegramApp.prototype.sendVideoNote = function (obj) {
-      return new Other(this.token).sendVideoNote(obj);
+      return new Other(this.token).sendVideoNote();
     };
     TelegramApp.prototype.sendVideoNote = function (obj) {
-      return new Other(this.token).sendVideoNote(obj);
+      return new Other(this.token).sendVideoNote();
     };
     TelegramApp.prototype.sendMediaGroup = function (obj) {
       return new Other(this.token).sendMediaGroup(obj);
@@ -658,6 +860,9 @@ var _this_ = this,
     };
     TelegramApp.prototype.sendPoll = function (obj) {
       return new Other(this.token).sendPoll(obj);
+    };
+    TelegramApp.prototype.stopPoll = function (obj) {
+      return new Other(this.token).stopPoll(obj);
     };
     TelegramApp.prototype.sendsendDicePoll = function (obj) {
       return new Other(this.token).sendDice(obj);
@@ -687,8 +892,55 @@ var _this_ = this,
       return new Other(this.token).close();
     };
 
+    // Webhook
+
+    TelegramApp.prototype.setWebhook = function (obj) {
+      return new Webhook(this.token).setWebhook(obj);
+    };
+    TelegramApp.prototype.deleteWebhook = function (obj) {
+      return new Webhook(this.token).deleteWebhook(obj);
+    };
+    TelegramApp.prototype.getWebhookInfo = function () {
+      return new Webhook(this.token).getWebhookInfo();
+    };
+
+    // Stickers
+
+    TelegramApp.prototype.sendSticker = function (obj) {
+      return new Stickers(this.token).sendSticker(obj);
+    };
+    TelegramApp.prototype.getStickerSet = function (obj) {
+      return new Stickers(this.token).getStickerSet(obj);
+    };
+    TelegramApp.prototype.uploadStickerFile = function () {
+      return new Stickers(this.token).uploadStickerFile();
+    };
+    TelegramApp.prototype.createNewStickerSet = function (obj) {
+      return new Stickers(this.token).createNewStickerSet(obj);
+    };
+    TelegramApp.prototype.addStickerToSet = function (obj) {
+      return new Stickers(this.token).addStickerToSet(obj);
+    };
+    TelegramApp.prototype.setStickerPositionInSet = function () {
+      return new Stickers(this.token).setStickerPositionInSet();
+    };
+    TelegramApp.prototype.setStickerSetThumb = function (obj) {
+      return new Stickers(this.token).setStickerSetThumb(obj);
+    };
+    TelegramApp.prototype.deleteStickerFromSet = function () {
+      return new Stickers(this.token).deleteStickerFromSet();
+    };
+
     return TelegramApp;
 
   })();
   return exports.TelegramApp = TelegramApp;
 })(this);
+
+
+
+
+
+
+
+

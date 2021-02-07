@@ -91,7 +91,75 @@ class Message { // Message
     }
     return response;
   }
+  editMessageText(params) {
+    if (params == null) {
+      throw new Error('Не указаны обязательные параметры editMessageText');
+    }
+    var response = editMessageText_(this.token, params);
+    function editMessageText_(token, data) {
+      if (data.text == undefined) {
+        throw new Error('editMessageText - Не указан обязательный параметр "text"');
+      }
+      return telegramApi_(token, 'editMessageText', data);
+    }
+    return response;
+  }
+  editMessageCaption(params) {
+    var response = editMessageCaption_(this.token, params);
+    function editMessageCaption_(token, data) {
+      if (data != null) {
+        return telegramApi_(token, 'editMessageCaption', data);
+      } else {
+        return telegramApi_(token, 'editMessageCaption');
+      }
+    }
+    return response;
+  }
+  editMessageMedia(params) {
+    if (params == null) {
+      throw new Error('Не указаны обязательные параметры editMessageMedia');
+    }
+    var response = editMessageMedia_(this.token, params);
+    function editMessageMedia_(token, data) {
+      if (data.media == undefined) {
+        throw new Error('editMessageMedia - Не указан обязательный параметр "media"');
+      }
+      return telegramApi_(token, 'editMessageMedia', data);
+    }
+    return response;
+  }
+  editMessageReplyMarkup(params) {
+    var response = editMessageReplyMarkup_(this.token, params);
+    function editMessageReplyMarkup_(token, data) {
+      if (data != null) {
+        return telegramApi_(token, 'editMessageReplyMarkup', data);
+      } else {
+        return telegramApi_(token, 'editMessageReplyMarkup');
+      }
+    }
+    return response;
+  }
+  deleteMessage(params) {
+    if (params == null) {
+      throw new Error('Не указаны обязательные параметры deleteMessage');
+    }
+    var response = deleteMessage_(this.token, params);
+    function deleteMessage_(token, data) {
+      if (data.chat_id == undefined) {
+        throw new Error('deleteMessage - Не указан обязательный параметр "chat_id"');
+      }
+      if (data.message_id == undefined) {
+        throw new Error('deleteMessage - Не указан обязательный параметр "message_id"');
+      }
+      return telegramApi_(token, 'deleteMessage', data);
+    }
+    return response;
+  }
 }
+
+
+
+
 
 
 

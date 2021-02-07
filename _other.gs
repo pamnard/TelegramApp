@@ -219,6 +219,22 @@ class Other { // Other
     }
     return response;
   }
+  stopPoll(params) {
+    if (params == null) {
+      throw new Error('Не указаны обязательные параметры stopPoll');
+    }
+    var response = stopPoll_(this.token, params);
+    function stopPoll_(token, data) {
+      if (data.chat_id == undefined) {
+        throw new Error('stopPoll - Не указан обязательный параметр "chat_id"');
+      }
+      if (data.message_id == undefined) {
+        throw new Error('stopPoll - Не указан обязательный параметр "message_id"');
+      }
+      return telegramApi_(token, 'stopPoll', data);
+    }
+    return response;
+  }
   sendDice(params) {
     if (params == null) {
       throw new Error('Не указаны обязательные параметры sendDice');
