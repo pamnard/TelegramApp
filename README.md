@@ -18,7 +18,7 @@ var message = {
     chat_id: '11111111', // целевой чат
     text: 'Hello World!' // cообщение
 }
-tAPI.sendMessage(data);
+tAPI.sendMessage(message);
 ```
 
 Все названия методов и параметров аналогичны официальной документации - https://core.telegram.org/bots/api#available-methods
