@@ -15,7 +15,7 @@ function auth(token) {
 
 /**
  * Use this method to send text messages. On success, the sent Message is returned.
- * @param {Object} params sendMessage peremeters as object
+ * @param {Object} params sendMessage paremeters as object
  * @return {Object} api result
  */
 function sendMessage(params) { // https://core.telegram.org/bots/api#sendmessage
@@ -24,7 +24,7 @@ function sendMessage(params) { // https://core.telegram.org/bots/api#sendmessage
 
 /**
  * Use this method to forward messages of any kind. On success, the sent Message is returned.
- * @param {Object} params forwardMessage peremeters as object
+ * @param {Object} params forwardMessage paremeters as object
  * @return {Object} api result
  */
 function forwardMessage(params) { // https://core.telegram.org/bots/api#forwardmessage
@@ -33,7 +33,7 @@ function forwardMessage(params) { // https://core.telegram.org/bots/api#forwardm
 
 /**
  * Use this method to copy messages of any kind. The method is analogous to the method forwardMessages, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
- * @param {Object} params copyMessage peremeters as object
+ * @param {Object} params copyMessage paremeters as object
  * @return {Object} api result
  */
 function copyMessage(params) { // https://core.telegram.org/bots/api#copymessage
@@ -42,7 +42,7 @@ function copyMessage(params) { // https://core.telegram.org/bots/api#copymessage
 
 /**
  * Use this method to edit live location messages. A location can be edited until its live_period expires or editing is explicitly disabled by a call to stopMessageLiveLocation. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
- * @param {Object} params editMessageLiveLocation peremeters as object
+ * @param {Object} params editMessageLiveLocation paremeters as object
  * @return {Object} api result
  */
 function editMessageLiveLocation(params) { // https://core.telegram.org/bots/api#editmessagelivelocation
@@ -51,7 +51,7 @@ function editMessageLiveLocation(params) { // https://core.telegram.org/bots/api
 
 /**
  * Use this method to stop updating a live location message before live_period expires. On success, if the message was sent by the bot, the sent Message is returned, otherwise True is returned.
- * @param {Object} params stopMessageLiveLocation peremeters as object
+ * @param {Object} params stopMessageLiveLocation paremeters as object
  * @return {Object} api result
  */
 function stopMessageLiveLocation(params) { // https://core.telegram.org/bots/api#stopmessagelivelocation
@@ -60,7 +60,7 @@ function stopMessageLiveLocation(params) { // https://core.telegram.org/bots/api
 
 /**
  * Use this method to edit text and game messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
- * @param {Object} params editMessageText peremeters as object
+ * @param {Object} params editMessageText paremeters as object
  * @return {Object} api result
  */
 function editMessageText(params) { // https://core.telegram.org/bots/api#editmessagetext
@@ -69,7 +69,7 @@ function editMessageText(params) { // https://core.telegram.org/bots/api#editmes
 
 /**
  * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
- * @param {Object} params editMessageCaption peremeters as object
+ * @param {Object} params editMessageCaption paremeters as object
  * @return {Object} api result
  */
 function editMessageCaption(params) { // https://core.telegram.org/bots/api#editmessagecaption
@@ -78,7 +78,7 @@ function editMessageCaption(params) { // https://core.telegram.org/bots/api#edit
 
 /**
  * Use this method to edit animation, audio, document, photo, or video messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded. Use a previously uploaded file via its file_id or specify a URL. On success, if the edited message was sent by the bot, the edited Message is returned, otherwise True is returned.
- * @param {Object} params editMessageMedia peremeters as object
+ * @param {Object} params editMessageMedia paremeters as object
  * @return {Object} api result
  */
 function editMessageMedia(params) { // https://core.telegram.org/bots/api#editmessagemedia
@@ -87,7 +87,7 @@ function editMessageMedia(params) { // https://core.telegram.org/bots/api#editme
 
 /**
  * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
- * @param {Object} params editMessageReplyMarkup peremeters as object
+ * @param {Object} params editMessageReplyMarkup paremeters as object
  * @return {Object} api result
  */
 function editMessageReplyMarkup(params) { // https://core.telegram.org/bots/api#editmessagereplymarkup
@@ -104,7 +104,7 @@ function editMessageReplyMarkup(params) { // https://core.telegram.org/bots/api#
 - If the bot is an administrator of a group, it can delete any message there.
 - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
 Returns True on success.
- * @param {Object} params deleteMessage peremeters as object
+ * @param {Object} params deleteMessage paremeters as object
  * @return {Object} api result
  */
 function deleteMessage(params) { // https://core.telegram.org/bots/api#deletemessage
@@ -113,7 +113,7 @@ function deleteMessage(params) { // https://core.telegram.org/bots/api#deletemes
 
 /**
  * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns True on success.
- * @param {Object} params sendChatAction peremeters as object
+ * @param {Object} params sendChatAction paremeters as object
  * @return {Object} api result
  */
 function sendChatAction(params) { // https://core.telegram.org/bots/api#sendchataction
@@ -122,7 +122,7 @@ function sendChatAction(params) { // https://core.telegram.org/bots/api#sendchat
 
 /**
  * Use this method to kick a user from a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
- * @param {Object} params kickChatMember peremeters as object
+ * @param {Object} params kickChatMember paremeters as object
  * @return {Object} api result
  */
 function kickChatMember(params) { // https://core.telegram.org/bots/api#kickchatmember
@@ -131,7 +131,7 @@ function kickChatMember(params) { // https://core.telegram.org/bots/api#kickchat
 
 /**
  * Use this method to unban a previously kicked user in a supergroup or channel. The user will not return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be removed from the chat. If you don't want this, use the parameter only_if_banned. Returns True on success.
- * @param {Object} params unbanChatMember peremeters as object
+ * @param {Object} params unbanChatMember paremeters as object
  * @return {Object} api result
  */
 function unbanChatMember(params) { // https://core.telegram.org/bots/api#unbanchatmember
@@ -140,7 +140,7 @@ function unbanChatMember(params) { // https://core.telegram.org/bots/api#unbanch
 
 /**
  * Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate admin rights. Pass True for all permissions to lift restrictions from a user. Returns True on success.
- * @param {Object} params restrictChatMember peremeters as object
+ * @param {Object} params restrictChatMember paremeters as object
  * @return {Object} api result
  */
 function restrictChatMember(params) { // https://core.telegram.org/bots/api#restrictchatmember
@@ -149,7 +149,7 @@ function restrictChatMember(params) { // https://core.telegram.org/bots/api#rest
 
 /**
  * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Pass False for all boolean parameters to demote a user. Returns True on success.
- * @param {Object} params promoteChatMember peremeters as object
+ * @param {Object} params promoteChatMember paremeters as object
  * @return {Object} api result
  */
 function promoteChatMember(params) { // https://core.telegram.org/bots/api#restrictchatmember
@@ -158,7 +158,7 @@ function promoteChatMember(params) { // https://core.telegram.org/bots/api#restr
 
 /**
  * Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns True on success.
- * @param {Object} params setChatAdministratorCustomTitle peremeters as object
+ * @param {Object} params setChatAdministratorCustomTitle paremeters as object
  * @return {Object} api result
  */
 function setChatAdministratorCustomTitle(params) { // https://core.telegram.org/bots/api#setchatadministratorcustomtitle
@@ -167,7 +167,7 @@ function setChatAdministratorCustomTitle(params) { // https://core.telegram.org/
 
 /**
  * Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
- * @param {Object} params setChatPermissions peremeters as object
+ * @param {Object} params setChatPermissions paremeters as object
  * @return {Object} api result
  */
 function setChatPermissions(params) { // https://core.telegram.org/bots/api#setchatpermissions
@@ -176,7 +176,7 @@ function setChatPermissions(params) { // https://core.telegram.org/bots/api#setc
 
 /**
  * Use this method to generate a new invite link for a chat; any previously generated link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns the new invite link as String on success.
- * @param {Object} params exportChatInviteLink peremeters as object
+ * @param {Object} params exportChatInviteLink paremeters as object
  * @return {Object} api result
  */
 function exportChatInviteLink(params) { // https://core.telegram.org/bots/api#exportchatinvitelink
@@ -185,7 +185,7 @@ function exportChatInviteLink(params) { // https://core.telegram.org/bots/api#ex
 
 /**
  * Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
- * @param {Object} params setChatPhoto peremeters as object
+ * @param {Object} params setChatPhoto paremeters as object
  * @return {Object} api result
  */
 function setChatPhoto(params) { // https://core.telegram.org/bots/api#setchatphoto
@@ -194,7 +194,7 @@ function setChatPhoto(params) { // https://core.telegram.org/bots/api#setchatpho
 
 /**
  * Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
- * @param {Object} params deleteChatPhoto peremeters as object
+ * @param {Object} params deleteChatPhoto paremeters as object
  * @return {Object} api result
  */
 function deleteChatPhoto(params) { // https://core.telegram.org/bots/api#deletechatphoto
@@ -203,7 +203,7 @@ function deleteChatPhoto(params) { // https://core.telegram.org/bots/api#deletec
 
 /**
  * Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
- * @param {Object} params setChatTitle peremeters as object
+ * @param {Object} params setChatTitle paremeters as object
  * @return {Object} api result
  */
 function setChatTitle(params) { // https://core.telegram.org/bots/api#setchattitle
@@ -212,7 +212,7 @@ function setChatTitle(params) { // https://core.telegram.org/bots/api#setchattit
 
 /**
  * Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Returns True on success.
- * @param {Object} params setChatDescription peremeters as object
+ * @param {Object} params setChatDescription paremeters as object
  * @return {Object} api result
  */
 function setChatDescription(params) { // https://core.telegram.org/bots/api#setchatdescription
@@ -221,7 +221,7 @@ function setChatDescription(params) { // https://core.telegram.org/bots/api#setc
 
 /**
  * Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' admin right in a supergroup or 'can_edit_messages' admin right in a channel. Returns True on success.
- * @param {Object} params pinChatMessage peremeters as object
+ * @param {Object} params pinChatMessage paremeters as object
  * @return {Object} api result
  */
 function pinChatMessage(params) { // https://core.telegram.org/bots/api#pinchatmessage
@@ -230,7 +230,7 @@ function pinChatMessage(params) { // https://core.telegram.org/bots/api#pinchatm
 
 /**
  * Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' admin right in a supergroup or 'can_edit_messages' admin right in a channel. Returns True on success.
- * @param {Object} params unpinChatMessage peremeters as object
+ * @param {Object} params unpinChatMessage paremeters as object
  * @return {Object} api result
  */
 function unpinChatMessage(params) { // https://core.telegram.org/bots/api#unpinchatmessage
@@ -239,7 +239,7 @@ function unpinChatMessage(params) { // https://core.telegram.org/bots/api#unpinc
 
 /**
  * Use this method to clear the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' admin right in a supergroup or 'can_edit_messages' admin right in a channel. Returns True on success.
- * @param {Object} params unpinAllChatMessages peremeters as object
+ * @param {Object} params unpinAllChatMessages paremeters as object
  * @return {Object} api result
  */
 function unpinAllChatMessages(params) { // https://core.telegram.org/bots/api#unpinchatmessage
@@ -248,7 +248,7 @@ function unpinAllChatMessages(params) { // https://core.telegram.org/bots/api#un
 
 /**
  * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
- * @param {Object} params leaveChat peremeters as object
+ * @param {Object} params leaveChat paremeters as object
  * @return {Object} api result
  */
 function leaveChat(params) { // https://core.telegram.org/bots/api#leavechat
@@ -257,7 +257,7 @@ function leaveChat(params) { // https://core.telegram.org/bots/api#leavechat
 
 /**
  * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
- * @param {Object} params getChat peremeters as object
+ * @param {Object} params getChat paremeters as object
  * @return {Object} api result
  */
 function getChat(params) { // https://core.telegram.org/bots/api#leavechat
@@ -266,7 +266,7 @@ function getChat(params) { // https://core.telegram.org/bots/api#leavechat
 
 /**
  * Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
- * @param {Object} params getChatAdministrators peremeters as object
+ * @param {Object} params getChatAdministrators paremeters as object
  * @return {Object} api result
  */
 function getChatAdministrators(params) { // https://core.telegram.org/bots/api#getchatadministrators
@@ -275,7 +275,7 @@ function getChatAdministrators(params) { // https://core.telegram.org/bots/api#g
 
 /**
  * Use this method to get the number of members in a chat. Returns Int on success.
- * @param {Object} params getChatMembersCount peremeters as object
+ * @param {Object} params getChatMembersCount paremeters as object
  * @return {Object} api result
  */
 function getChatMembersCount(params) { // https://core.telegram.org/bots/api#getchatmemberscount
@@ -284,7 +284,7 @@ function getChatMembersCount(params) { // https://core.telegram.org/bots/api#get
 
 /**
  * Use this method to get information about a member of a chat. Returns a ChatMember object on success.
- * @param {Object} params getChatMember peremeters as object
+ * @param {Object} params getChatMember paremeters as object
  * @return {Object} api result
  */
 function getChatMember(params) { // https://core.telegram.org/bots/api#getchatmember
@@ -293,7 +293,7 @@ function getChatMember(params) { // https://core.telegram.org/bots/api#getchatme
 
 /**
  * Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
- * @param {Object} params setChatStickerSet peremeters as object
+ * @param {Object} params setChatStickerSet paremeters as object
  * @return {Object} api result
  */
 function setChatStickerSet(params) { // https://core.telegram.org/bots/api#setchatstickerset
@@ -302,7 +302,7 @@ function setChatStickerSet(params) { // https://core.telegram.org/bots/api#setch
 
 /**
  * Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate admin rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
- * @param {Object} params deleteChatStickerSet peremeters as object
+ * @param {Object} params deleteChatStickerSet paremeters as object
  * @return {Object} api result
  */
 function deleteChatStickerSet(params) { // https://core.telegram.org/bots/api#deletechatstickerset
@@ -319,7 +319,7 @@ function getUpdates() {
 
 /**
  * Use this method to send photos. On success, the sent Message is returned.
- * @param {Object} params sendPhoto peremeters as object
+ * @param {Object} params sendPhoto paremeters as object
  * @return {Object} api result
  */
 function sendPhoto(params) { // https://core.telegram.org/bots/api#sendphoto
@@ -328,7 +328,7 @@ function sendPhoto(params) { // https://core.telegram.org/bots/api#sendphoto
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
- * @param {Object} params sendAudio peremeters as object
+ * @param {Object} params sendAudio paremeters as object
  * @return {Object} api result
  */
 function sendAudio(params) { // https://core.telegram.org/bots/api#sendaudio
@@ -337,7 +337,7 @@ function sendAudio(params) { // https://core.telegram.org/bots/api#sendaudio
 
 /**
  * Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
- * @param {Object} params sendDocument peremeters as object
+ * @param {Object} params sendDocument paremeters as object
  * @return {Object} api result
  */
 function sendDocument(params) { // https://core.telegram.org/bots/api#senddocument
@@ -346,7 +346,7 @@ function sendDocument(params) { // https://core.telegram.org/bots/api#senddocume
 
 /**
  * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
- * @param {Object} params sendVideo peremeters as object
+ * @param {Object} params sendVideo paremeters as object
  * @return {Object} api result
  */
 function sendVideo(params) { // https://core.telegram.org/bots/api#sendvideo
@@ -355,7 +355,7 @@ function sendVideo(params) { // https://core.telegram.org/bots/api#sendvideo
 
 /**
  * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
- * @param {Object} params sendAnimation peremeters as object
+ * @param {Object} params sendAnimation paremeters as object
  * @return {Object} api result
  */
 function sendAnimation(params) { // https://core.telegram.org/bots/api#sendanimation
@@ -364,7 +364,7 @@ function sendAnimation(params) { // https://core.telegram.org/bots/api#sendanima
 
 /**
  * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS (other formats may be sent as Audio or Document). On success, the sent Message is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
- * @param {Object} params sendVoice peremeters as object
+ * @param {Object} params sendVoice paremeters as object
  * @return {Object} api result
  */
 function sendVoice(params) { // https://core.telegram.org/bots/api#sendvoice
@@ -373,7 +373,7 @@ function sendVoice(params) { // https://core.telegram.org/bots/api#sendvoice
 
 /**
  * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
- * @param {Object} params sendVideoNote peremeters as object
+ * @param {Object} params sendVideoNote paremeters as object
  * @return {Object} api result
  */
 function sendVideoNote(params) { // https://core.telegram.org/bots/api#sendvideonote
@@ -382,7 +382,7 @@ function sendVideoNote(params) { // https://core.telegram.org/bots/api#sendvideo
 
 /**
  * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of Messages that were sent is returned.
- * @param {Object} params sendMediaGroup peremeters as object
+ * @param {Object} params sendMediaGroup paremeters as object
  * @return {Object} api result
  */
 function sendMediaGroup(params) { // https://core.telegram.org/bots/api#sendmediagroup
@@ -391,7 +391,7 @@ function sendMediaGroup(params) { // https://core.telegram.org/bots/api#sendmedi
 
 /**
  * Use this method to send point on the map. On success, the sent Message is returned.
- * @param {Object} params sendLocation peremeters as object
+ * @param {Object} params sendLocation paremeters as object
  * @return {Object} api result
  */
 function sendLocation(params) { // https://core.telegram.org/bots/api#sendlocation
@@ -400,7 +400,7 @@ function sendLocation(params) { // https://core.telegram.org/bots/api#sendlocati
 
 /**
  * Use this method to send information about a venue. On success, the sent Message is returned.
- * @param {Object} params sendVenue peremeters as object
+ * @param {Object} params sendVenue paremeters as object
  * @return {Object} api result
  */
 function sendVenue(params) { // https://core.telegram.org/bots/api#sendvenue
@@ -409,7 +409,7 @@ function sendVenue(params) { // https://core.telegram.org/bots/api#sendvenue
 
 /**
  * Use this method to send phone contacts. On success, the sent Message is returned.
- * @param {Object} params sendContact peremeters as object
+ * @param {Object} params sendContact paremeters as object
  * @return {Object} api result
  */
 function sendContact(params) { // https://core.telegram.org/bots/api#sendcontact
@@ -418,7 +418,7 @@ function sendContact(params) { // https://core.telegram.org/bots/api#sendcontact
 
 /**
  * Use this method to send a native poll. On success, the sent Message is returned.
- * @param {Object} params sendPoll peremeters as object
+ * @param {Object} params sendPoll paremeters as object
  * @return {Object} api result
  */
 function sendPoll(params) { // https://core.telegram.org/bots/api#sendpoll
@@ -427,7 +427,7 @@ function sendPoll(params) { // https://core.telegram.org/bots/api#sendpoll
 
 /**
  * Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned.
- * @param {Object} params stopPoll peremeters as object
+ * @param {Object} params stopPoll paremeters as object
  * @return {Object} api result
  */
 function stopPoll(params) { // https://core.telegram.org/bots/api#stoppoll
@@ -436,7 +436,7 @@ function stopPoll(params) { // https://core.telegram.org/bots/api#stoppoll
 
 /**
  * Use this method to send an animated emoji that will display a random value. On success, the sent Message is returned.
- * @param {Object} params sendDice peremeters as object
+ * @param {Object} params sendDice paremeters as object
  * @return {Object} api result
  */
 function sendDice(params) { // https://core.telegram.org/bots/api#senddice
@@ -445,7 +445,7 @@ function sendDice(params) { // https://core.telegram.org/bots/api#senddice
 
 /**
  * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
- * @param {Object} params getUserProfilePhotos peremeters as object
+ * @param {Object} params getUserProfilePhotos paremeters as object
  * @return {Object} api result
  */
 function getUserProfilePhotos(params) { // https://core.telegram.org/bots/api#getuserprofilephotos
@@ -454,7 +454,7 @@ function getUserProfilePhotos(params) { // https://core.telegram.org/bots/api#ge
 
 /**
  * Use this method to get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
- * @param {Object} params getFile peremeters as object
+ * @param {Object} params getFile paremeters as object
  * @return {Object} api result
  */
 function getFile(params) { // https://core.telegram.org/bots/api#getfile
@@ -463,7 +463,7 @@ function getFile(params) { // https://core.telegram.org/bots/api#getfile
 
 /**
  * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
- * @param {Object} params answerCallbackQuery peremeters as object
+ * @param {Object} params answerCallbackQuery paremeters as object
  * @return {Object} api result
  */
 function answerCallbackQuery(params) { // https://core.telegram.org/bots/api#answercallbackquery
@@ -472,7 +472,7 @@ function answerCallbackQuery(params) { // https://core.telegram.org/bots/api#ans
 
 /**
  * Use this method to change the list of the bot's commands. Returns True on success.
- * @param {Object} params setMyCommands peremeters as object
+ * @param {Object} params setMyCommands paremeters as object
  * @return {Object} api result
  */
 function setMyCommands(params) { // https://core.telegram.org/bots/api#setmycommands
@@ -515,7 +515,7 @@ function close() { // https://core.telegram.org/bots/api#close
 
 /**
  * Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts. Returns True on success.
- * @param {Object} params setWebhook peremeters as object
+ * @param {Object} params setWebhook paremeters as object
  * @return {Object} api result
  */
 function setWebhook(params) { // https://core.telegram.org/bots/api#setwebhook
@@ -524,7 +524,7 @@ function setWebhook(params) { // https://core.telegram.org/bots/api#setwebhook
 
 /**
  * Use this method to remove webhook integration if you decide to switch back to getUpdates. Returns True on success.
- * @param {Object} params deleteWebhook peremeters as object
+ * @param {Object} params deleteWebhook paremeters as object
  * @return {Object} api result
  */
 function deleteWebhook(params) { // https://core.telegram.org/bots/api#deletewebhook
@@ -543,7 +543,7 @@ function getWebhookInfo() { // https://core.telegram.org/bots/api#getwebhookinfo
 
 /**
  * Use this method to send static .WEBP or animated .TGS stickers. On success, the sent Message is returned.
- * @param {Object} params sendSticker peremeters as object
+ * @param {Object} params sendSticker paremeters as object
  * @return {Object} api result
  */
 function sendSticker(params) { // https://core.telegram.org/bots/api#sendsticker
@@ -552,7 +552,7 @@ function sendSticker(params) { // https://core.telegram.org/bots/api#sendsticker
 
 /**
  * Use this method to get a sticker set. On success, a StickerSet object is returned.
- * @param {Object} params getStickerSet peremeters as object
+ * @param {Object} params getStickerSet paremeters as object
  * @return {Object} api result
  */
 function getStickerSet(params) { // https://core.telegram.org/bots/api#getstickerset
@@ -561,7 +561,7 @@ function getStickerSet(params) { // https://core.telegram.org/bots/api#getsticke
 
 /**
  * Use this method to upload a .PNG file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times). Returns the uploaded File on success.
- * @param {Object} params uploadStickerFile peremeters as object
+ * @param {Object} params uploadStickerFile paremeters as object
  * @return {Object} api result
  */
 function uploadStickerFile(params) { // https://core.telegram.org/bots/api#uploadstickerfile
@@ -570,7 +570,7 @@ function uploadStickerFile(params) { // https://core.telegram.org/bots/api#uploa
 
 /**
  * Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields png_sticker or tgs_sticker. Returns True on success.
- * @param {Object} params createNewStickerSet peremeters as object
+ * @param {Object} params createNewStickerSet paremeters as object
  * @return {Object} api result
  */
 function createNewStickerSet(params) { // https://core.telegram.org/bots/api#createnewstickerset
@@ -579,7 +579,7 @@ function createNewStickerSet(params) { // https://core.telegram.org/bots/api#cre
 
 /**
  * Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker or tgs_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers. Returns True on success.
- * @param {Object} params addStickerToSet peremeters as object
+ * @param {Object} params addStickerToSet paremeters as object
  * @return {Object} api result
  */
 function addStickerToSet(params) { // https://core.telegram.org/bots/api#addstickertoset
@@ -588,7 +588,7 @@ function addStickerToSet(params) { // https://core.telegram.org/bots/api#addstic
 
 /**
  * Use this method to move a sticker in a set created by the bot to a specific position. Returns True on success.
- * @param {Object} params setStickerPositionInSet peremeters as object
+ * @param {Object} params setStickerPositionInSet paremeters as object
  * @return {Object} api result
  */
 function setStickerPositionInSet(params) { // https://core.telegram.org/bots/api#setstickerpositioninset
@@ -597,7 +597,7 @@ function setStickerPositionInSet(params) { // https://core.telegram.org/bots/api
 
 /**
  * Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only. Returns True on success.
- * @param {Object} params setStickerSetThumb peremeters as object
+ * @param {Object} params setStickerSetThumb paremeters as object
  * @return {Object} api result
  */
 function setStickerSetThumb(params) { // https://core.telegram.org/bots/api#setstickersetthumb
@@ -606,7 +606,7 @@ function setStickerSetThumb(params) { // https://core.telegram.org/bots/api#sets
 
 /**
  * Use this method to delete a sticker from a set created by the bot. Returns True on success.
- * @param {Object} params deleteStickerFromSet peremeters as object
+ * @param {Object} params deleteStickerFromSet paremeters as object
  * @return {Object} api result
  */
 function deleteStickerFromSet(params) { // https://core.telegram.org/bots/api#deletestickerfromset
