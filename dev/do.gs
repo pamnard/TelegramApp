@@ -1,9 +1,8 @@
-function doGet(e) {
-  var params = JSON.stringify(e);
-  return ContentService.createTextOutput(params).setMimeType(ContentService.MimeType.JSON); 
-}
-
 function doPost(e) {
-  var params = JSON.stringify(e);
-  return ContentService.createTextOutput(params).setMimeType(ContentService.MimeType.JSON);
+    try {
+        var update = JSON.parse(e.postData.contents);
+        main(update);
+    } catch (e) {
+        Logger.log(JSON.stringify(e));
+    }
 }
