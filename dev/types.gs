@@ -2632,7 +2632,6 @@ class Type {
   ChatMember(params) { }
   ChatMemberOwner(params) { }
   ChatMemberAdministrator(params) { }
-  ChatMemberMember(params) { }
   ChatMemberRestricted(params) { }
   ChatMemberLeft(params) { }
   ChatMemberBanned(params) { }
