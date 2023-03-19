@@ -6,13 +6,14 @@
 
 Получим тексты последних сообщений в чате
 ```javascript
-function test() {
-  var token = '1234567890:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
-  var tAPI = new TelegramApp(token);
-  var type = tAPI.Type();
-  var updates = tAPI.getUpdates();
+const token = '154354351435:AFGAFGAFDGFGAFDGAFGAFGAFGAFGAFDG';
+const myBot = new TelegramApp(token, true);
+const type = myBot.Type();
+
+function get_updates() {
+  var updates = myBot.getUpdates();
   for (var i = 0; i < updates.length; i++) {
-    var message_text = type.Update(updates[i]).getMessage().getText();
+    var message_text = type.Update(updates[i]).message.text;
     Logger.log(message_text);
   }
 }
@@ -20,19 +21,26 @@ function test() {
 - - -
 Отправим в чат сообщение с прикреплённой клавиатурой
 ```javascript
-function test() {
-  var token = '1234567890:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
-  var tAPI = new TelegramApp(token);
-  var type = tAPI.Type();
-  var result = tAPI.sendMessage({
-    chat_id: 12345678,
-    text: 'Hello World!',
-    reply_markup: type.ReplyKeyboardMarkup().create([[
-      { text: 'Button 1', callback_data: 1 },
-      { text: 'Button 2', callback_data: 2 },
-      { text: 'Button 3', callback_data: 3 },
-    ]])
+const token = '154354351435:AFGAFGAFDGFGAFDGAFGAFGAFGAFGAFDG';
+const myBot = new TelegramApp(token, true);
+const type = myBot.Type();
+
+function send_message() {
+  myBot.sendMessage({
+    chat_id: '123456,
+    text: 'Ку-ку!',
+    reply_markup: type.InlineKeyboardMarkup({
+      inline_keyboard: [[
+        type.InlineKeyboardButton({
+          text: 'Да!',
+          callback_data: 'yes'
+        }),
+        type.InlineKeyboardButton({
+          text: 'Нет!',
+          callback_data: 'no'
+        })
+      ]]
+    })
   });
-  Logger.log(result);
 }
 ```
