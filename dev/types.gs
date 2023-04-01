@@ -3,6 +3,26 @@ class Type {
 
   // Getting updates
 
+  /**
+   * @method Update
+   * @param {Object} params - An object containing the parameters for the update
+   * @param {Number} params.update_id - The update ID
+   * @param {Object} params.message - The message object
+   * @param {Object} params.edited_message - The edited message object
+   * @param {Object} params.channel_post - The channel post object
+   * @param {Object} params.edited_channel_post - The edited channel post object
+   * @param {Object} params.inline_query - The inline query object
+   * @param {Object} params.chosen_inline_result - The chosen inline result object
+   * @param {Object} params.callback_query - The callback query object
+   * @param {Object} params.shipping_query - The shipping query object
+   * @param {Object} params.pre_checkout_query - The pre checkout query object
+   * @param {Object} params.poll - The poll object
+   * @param {Object} params.poll_answer - The poll answer object
+   * @param {Object} params.my_chat_member - The my chat member object
+   * @param {Object} params.chat_member - The chat member object
+   * @param {Object} params.chat_join_request - The chat join request object
+   * @returns {Update} A new Update object
+   */
   Update(params = {
     update_id,
     message,
@@ -103,6 +123,20 @@ class Type {
     return new Update(params);
   }
 
+  /**
+   * @method WebhookInfo
+   * @param {Object} params - An object containing the parameters for the webhook info
+   * @param {String} params.url - The URL of the webhook
+   * @param {Boolean} params.has_custom_certificate - Whether the webhook has a custom certificate
+   * @param {Number} params.pending_update_count - The number of pending updates
+   * @param {String} params.ip_address - The IP address of the webhook
+   * @param {Date} params.last_error_date - The date of the last error
+   * @param {String} params.last_error_message - The message of the last error
+   * @param {Date} params.last_synchronization_error_date - The date of the last synchronization error
+   * @param {Number} params.max_connections - The maximum number of connections
+   * @param {Array} params.allowed_updates - An array of allowed updates
+   * @returns {WebhookInfo} A new WebhookInfo object
+   */
   WebhookInfo(params = {
     url,
     has_custom_certificate,
@@ -169,6 +203,22 @@ class Type {
 
   // Available types
 
+  /**
+   * @method User
+   * @param {Object} params - An object containing the user's data
+   * @param {Number} params.id - The user's ID
+   * @param {Boolean} params.is_bot - Whether the user is a bot
+   * @param {String} params.first_name - The user's first name
+   * @param {String} params.last_name - The user's last name
+   * @param {String} params.username - The user's username
+   * @param {String} params.language_code - The user's language code
+   * @param {Boolean} params.is_premium - Whether the user is a premium user
+   * @param {Boolean} params.added_to_attachment_menu - Whether the user has been added to the attachment menu
+   * @param {Boolean} params.can_join_groups - Whether the user can join groups
+   * @param {Boolean} params.can_read_all_group_messages - Whether the user can read all group messages
+   * @param {Boolean} params.supports_inline_queries - Whether the user supports inline queries
+   * @returns {User} A new User object
+   */
   User(params = {
     id,
     is_bot,
@@ -245,6 +295,39 @@ class Type {
     return new User(params);
   }
 
+  /**
+   * @method Chat
+   * @param {Object} params - An object containing the parameters for the chat.
+   * @param {Number} params.id - The chat's unique identifier.
+   * @param {String} params.type - The type of chat.
+   * @param {String} params.title - The chat's title.
+   * @param {String} params.username - The chat's username.
+   * @param {String} params.first_name - The chat's first name.
+   * @param {String} params.last_name - The chat's last name.
+   * @param {Boolean} params.is_forum - Whether the chat is a forum.
+   * @param {Object} params.photo - The chat's photo.
+   * @param {Array} params.active_usernames - The chat's active usernames.
+   * @param {String} params.emoji_status_custom_emoji_id - The chat's emoji status custom emoji id.
+   * @param {String} params.bio - The chat's bio.
+   * @param {Boolean} params.has_private_forwards - Whether the chat has private forwards.
+   * @param {Boolean} params.has_restricted_voice_and_video_messages - Whether the chat has restricted voice and video messages.
+   * @param {Boolean} params.join_to_send_messages - Whether the chat requires users to join in order to send messages.
+   * @param {Boolean} params.join_by_request - Whether the chat requires users to join by request.
+   * @param {String} params.description - The chat's description.
+   * @param {String} params.invite_link - The chat's invite link.
+   * @param {Object} params.pinned_message - The chat's pinned message.
+   * @param {Object} params.permissions - The chat's permissions.
+   * @param {Number} params.slow_mode_delay - The chat's slow mode delay.
+   * @param {Number} params.message_auto_delete_time - The chat's message auto delete time.
+   * @param {Boolean} params.has_aggressive_anti_spam_enabled - Whether the chat has aggressive anti-spam enabled.
+   * @param {Boolean} params.has_hidden_members - Whether the chat has hidden members.
+   * @param {Boolean} params.has_protected_content - Whether the chat has protected content.
+   * @param {String} params.sticker_set_name - The chat's sticker set name.
+   * @param {Boolean} params.can_set_sticker_set - Whether the chat can set a sticker set.
+   * @param {Number} params.linked_chat_id - The chat's linked chat id.
+   * @param {Object} params.location - The chat's location.
+   * @returns {Object} A new chat object.
+   */
   Chat(params = {
     id,
     type,
@@ -1077,6 +1160,12 @@ class Type {
     return new Message(params);
   }
 
+  /**
+   * @method MessageId
+   * @param {Object} params
+   * @param {Number} params.message_id - The unique identifier for the target message
+   * @returns {MessageId}
+   */
   MessageId(params = {
     message_id
   }) {
@@ -1093,6 +1182,18 @@ class Type {
     return new MessageId(params);
   }
 
+  /**
+   * @method MessageEntity
+   * @param {Object} params - An object containing the parameters for the MessageEntity
+   * @param {String} params.type - The type of the entity
+   * @param {Number} params.offset - The offset of the entity
+   * @param {Number} params.length - The length of the entity
+   * @param {String} params.url - The URL of the entity
+   * @param {Object} params.user - The user associated with the entity
+   * @param {String} params.language - The language of the entity
+   * @param {String} params.custom_emoji_id - The custom emoji id of the entity
+   * @returns {MessageEntity} A new MessageEntity object
+   */
   MessageEntity(params = {
     type,
     offset,
@@ -1145,6 +1246,16 @@ class Type {
     return new MessageEntity(params);
   }
 
+  /**
+   * @method PhotoSize
+   * @param {Object} params - An object containing the parameters for the PhotoSize
+   * @param {string} params.file_id - Unique identifier for this file
+   * @param {string} params.file_unique_id - Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+   * @param {number} params.width - Photo width
+   * @param {number} params.height - Photo height
+   * @param {number} params.file_size - File size
+   * @returns {PhotoSize} A new PhotoSize object
+   */
   PhotoSize(params = {
     file_id,
     file_unique_id,
@@ -1185,6 +1296,20 @@ class Type {
     return new PhotoSize(params);
   }
 
+  /**
+   * @method Animation
+   * @param {Object} params - Parameters for creating an Animation object
+   * @param {String} params.file_id - Unique file identifier
+   * @param {String} params.file_unique_id - Unique file identifier
+   * @param {Number} params.width - Video width as defined by sender
+   * @param {Number} params.height - Video height as defined by sender
+   * @param {Number} params.duration - Duration of the video in seconds as defined by sender
+   * @param {Object} params.thumbnail - Optional. Animation thumbnail as defined by sender
+   * @param {String} params.file_name - Optional. Original animation filename as defined by sender
+   * @param {String} params.mime_type - Optional. MIME type of the file as defined by sender
+   * @param {Number} params.file_size - Optional. File size
+   * @returns {Animation} - Returns an Animation object
+   */
   Animation(params = {
     file_id,
     file_unique_id,
@@ -1249,6 +1374,20 @@ class Type {
     return new Animation(params);
   }
 
+  /**
+   * @method Audio
+   * @param {Object} params - An object containing the parameters for the audio
+   * @param {String} params.file_id - Unique identifier for this file
+   * @param {String} params.file_unique_id - Unique identifier for this file, which is supposed to be the same over time and for different bots
+   * @param {Number} params.duration - Duration of the audio in seconds as defined by sender
+   * @param {String} params.performer - Performer of the audio as defined by sender or by audio tags
+   * @param {String} params.title - Title of the audio as defined by sender or by audio tags
+   * @param {String} params.file_name - Original filename as defined by sender
+   * @param {String} params.mime_type - MIME type of the file as defined by sender
+   * @param {Number} params.file_size - File size
+   * @param {Object} params.thumbnail - Optional. Thumbnail of the album cover to which the music file belongs
+   * @returns {Audio} An object containing the audio data
+   */
   Audio(params = {
     file_id,
     file_unique_id,
@@ -1313,6 +1452,17 @@ class Type {
     return new Audio(params);
   }
 
+  /**
+   * @method Document
+   * @param {Object} params - An object containing the parameters for the Document
+   * @param {String} params.file_id - The file ID of the document
+   * @param {String} params.file_unique_id - The unique ID of the document
+   * @param {Object} params.thumbnail - An object containing the thumbnail of the document
+   * @param {String} params.file_name - The name of the document
+   * @param {String} params.mime_type - The MIME type of the document
+   * @param {Number} params.file_size - The size of the document
+   * @returns {Document} A new Document object
+   */
   Document(params = {
     file_id,
     file_unique_id,
@@ -1359,6 +1509,20 @@ class Type {
     return new Document(params);
   }
 
+  /**
+   * @method Video
+   * @param {Object} params - An object containing the parameters for the video
+   * @param {String} params.file_id - Unique identifier for this file
+   * @param {String} params.file_unique_id - Unique identifier for this file, which is supposed to be the same over time and for different bots
+   * @param {Number} params.width - Video width as defined by sender
+   * @param {Number} params.height - Video height as defined by sender
+   * @param {Number} params.duration - Duration of the video in seconds as defined by sender
+   * @param {Object} params.thumbnail - Optional. Video thumbnail
+   * @param {String} params.file_name - Optional. Original filename as defined by sender
+   * @param {String} params.mime_type - Optional. MIME type of the file as defined by sender
+   * @param {Number} params.file_size - Optional. File size
+   * @returns {Video} A new Video object
+   */
   Video(params = {
     file_id,
     file_unique_id,
@@ -1423,6 +1587,17 @@ class Type {
     return new Video(params);
   }
 
+  /**
+   * @method VideoNote
+   * @param {Object} params - An object containing the parameters for the VideoNote
+   * @param {String} params.file_id - Unique identifier for this file
+   * @param {String} params.file_unique_id - Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+   * @param {Number} params.length - Video width and height (diameter of the video message) as defined by sender
+   * @param {Number} params.duration - Duration of the video in seconds as defined by sender
+   * @param {Object} params.thumbnail - Optional. Video thumbnail
+   * @param {Number} params.file_size - Optional. File size
+   * @returns {VideoNote} A VideoNote object
+   */
   VideoNote(params = {
     file_id,
     file_unique_id,
@@ -1469,6 +1644,16 @@ class Type {
     return new VideoNote(params);
   }
 
+  /**
+   * @method Voice
+   * @param {Object} params - An object containing the parameters for the Voice data type.
+   * @param {String} params.file_id - Unique identifier for this file.
+   * @param {String} params.file_unique_id - Unique identifier for this file, which is supposed to be the same over time and for different bots.
+   * @param {Number} params.duration - Duration of the audio in seconds as defined by sender.
+   * @param {String} params.mime_type - Optional. MIME type of the file as defined by sender.
+   * @param {Number} params.file_size - Optional. File size.
+   * @returns {Voice} A new Voice data type object.
+   */
   Voice(params = {
     file_id,
     file_unique_id,
@@ -1509,6 +1694,16 @@ class Type {
     return new Voice(params);
   }
 
+  /**
+  * @method Contact
+  * @param {Object} params 
+  * @param {Number} params.phone_number - Contact's phone number
+  * @param {String} params.first_name - Contact's first name
+  * @param {String} params.last_name - Optional. Contact's last name
+  * @param {String} params.user_id - Optional. Contact's user identifier in Telegram. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
+  * @param {String} params.vcard - Optional. Additional data about the contact in the form of a vCard
+  * @returns {Contact} returns an instance of Contact
+  */
   Contact(params = {
     phone_number,
     first_name,
@@ -1549,6 +1744,13 @@ class Type {
     return new Contact(params);
   }
 
+  /**
+   * @method Dice
+   * @param {Object} params - An object used to create a Dice
+   * @param {string} params.emoji - An emoji character
+   * @param {number} params.value - A randomly generated number
+   * @returns {Dice} A data type with emoji character and a random number
+   */
   Dice(params = {
     emoji,
     value
@@ -1571,6 +1773,13 @@ class Type {
     return new Dice(params);
   }
 
+  /** 
+   * @method PollOption 
+   * @param {Object} params - Parameters to construct a new PollOption object 
+   * @param {String} params.text - Text of the PollOption object
+   * @param {Number} params.voter_count - Voter count of the PollOption object
+   * @returns {PollOption} A new object of PollOption 
+   */
   PollOption(params = {
     text,
     voter_count
@@ -1593,6 +1802,14 @@ class Type {
     return new PollOption(params);
   }
 
+  /**
+   * @method PollAnswer
+   * @param {Object} params - Parameter object.
+   * @param {Number} params.poll_id - The ID of the poll.
+   * @param {Object} params.user - A User object that contains data about the user who answered the poll.
+   * @param {Number[]} params.option_ids - An array of vote option IDs, chosen by the user. 
+   * @return {PollAnswer} An object representing the poll answer.
+   */
   PollAnswer(params = {
     poll_id,
     user,
@@ -1621,6 +1838,24 @@ class Type {
     return new PollAnswer(params);
   }
 
+  /**
+   * @method Poll
+   * @param {Object} params - Parameters for creating the Poll object
+   * @param {String} params.id - The identifier for the poll
+   * @param {String} params.question - The poll question, 1-255 characters
+   * @param {Array<Object>} params.options - List of poll options 
+   * @param {Number} params.total_voter_count - Number of users that voted in the poll 
+   * @param {Boolean} params.is_closed - True, if the poll is closed 
+   * @param {Boolean} params.is_anonymous - True, if the poll is anonymous 
+   * @param {String} params.type - Type of poll, can be “regular” or “quiz”
+   * @param {Boolean} params.allows_multiple_answers - True, if the poll allows multiple answers 
+   * @param {String} params.correct_option_id - 0-based identifier of the correct option in a quiz poll 
+   * @param {String} params.explanation - Text that is shown when a user chooses an incorrect answer in a quiz poll
+   * @param {Array<Object>} params.explanation_entities - Special entities like usernames, URLs, bot commands, etc. that appear in the explanation
+   * @param {Number} params.open_period - Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with close_date
+   * @param {Number} params.close_date - Point in time (Unix timestamp) when the poll will be automatically closed 
+   * @returns {Poll} A new instance of the Poll object
+   */
   Poll(params = {
     id,
     question,
@@ -1713,6 +1948,17 @@ class Type {
     return new Poll(params);
   }
 
+  /**
+   * @method Location 
+   * @param {Object} params 
+   * @param {number} params.longitude - Longitude as defined by sender
+   * @param {number} params.latitude - Latitude as defined by sender
+   * @param {number} params.horizontal_accuracy - Optional. The radius of uncertainty for the location, measured in meters; 0-1500
+   * @param {number} params.live_period - Optional. Time relative to the message sending date, during which the location can be updated; in seconds. For active live locations only.
+   * @param {number} params.heading - Optional. The direction in which user is moving, in degrees; 1-360. For active live locations only.
+   * @param {number} params.proximity_alert_radius - Optional. The maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only.
+   * @returns {Location}
+   */
   Location(params = {
     longitude,
     latitude,
@@ -1759,6 +2005,18 @@ class Type {
     return new Location(params);
   }
 
+  /**
+   * @method Venue
+   * @param {Object} params - An object containing the parameters for the Venue data type.
+   * @param {Object} params.location - The location of the venue.
+   * @param {String} params.title - The title of the venue.
+   * @param {String} params.address - The address of the venue.
+   * @param {String} params.foursquare_id - The foursquare ID of the venue.
+   * @param {String} params.foursquare_type - The foursquare type of the venue.
+   * @param {String} params.google_place_id - The Google Place ID of the venue.
+   * @param {String} params.google_place_type - The Google Place type of the venue.
+   * @returns {Object} A new Venue data type object.
+   */
   Venue(params = {
     location,
     title,
@@ -1811,6 +2069,13 @@ class Type {
     return new Venue(params);
   }
 
+  /**
+   * @method WebAppData
+   * @param {object} params - An object of parameters.
+   * @param {string} params.data - Data Value.
+   * @param {string} params.button_text - Data button text.
+   * @returns {WebAppData} - WebAppData object.
+   */
   WebAppData(params = {
     data,
     button_text
@@ -1833,6 +2098,14 @@ class Type {
     return new WebAppData(params);
   }
 
+  /**
+   * @method ProximityAlertTriggered
+   * @param {object} params An object containing the traveler, watcher and distance.
+   * @param {object} params.traveler A traveler object.
+   * @param {object} params.watcher A watcher object.
+   * @param {number} params.distance The distance between the traveler and watcher.
+   * @returns {ProximityAlertTriggered} A ProximityAlertTriggered object.
+   */
   ProximityAlertTriggered(params = {
     traveler,
     watcher,
@@ -1861,6 +2134,12 @@ class Type {
     return new ProximityAlertTriggered(params);
   }
 
+  /**
+   * @method MessageAutoDeleteTimerChanged
+   * @param {Object} params
+   * @param {number} params.message_auto_delete_time - time in seconds when telegram bot will delete a message
+   * @return {MessageAutoDeleteTimerChanged} object with the message auto delete time
+   */
   MessageAutoDeleteTimerChanged(params = {
     message_auto_delete_time
   }) {
@@ -1877,6 +2156,14 @@ class Type {
     return new MessageAutoDeleteTimerChanged(params);
   }
 
+  /**
+   * @method ForumTopicCreated
+   * @param {Object} params
+   * @param {string} params.name - Name of the topic
+   * @param {string} params.icon_color - Color of the topic icon in RGB format
+   * @param {string} params.icon_custom_emoji_id - Optional. Unique identifier of the custom emoji shown as the topic icon
+   * @return {ForumTopicCreated}
+   */
   ForumTopicCreated(params = {
     name,
     icon_color,
@@ -1905,6 +2192,11 @@ class Type {
     return new ForumTopicCreated(params);
   }
 
+  /**
+   * @method ForumTopicClosed
+   * @param {Object} params 
+   * @returns {ForumTopicClosed}
+   */
   ForumTopicClosed(params) {
     class ForumTopicClosed {
       constructor(params) {
@@ -1917,6 +2209,13 @@ class Type {
     return new ForumTopicClosed(params);
   }
 
+  /**
+   * @method ForumTopicEdited
+   * @param {Object} params
+   * @param {String} params.name - The name of the edited topic
+   * @param {String} params.icon_custom_emoji_id - The custom emoji id, if any
+   * @returns {ForumTopicEdited} instance of ForumTopicEdited
+   */
   ForumTopicEdited(params = {
     name,
     icon_custom_emoji_id
@@ -1939,6 +2238,11 @@ class Type {
     return new ForumTopicEdited(params);
   }
 
+  /**
+   * @method ForumTopicReopened
+   * @param {Object} params
+   * @return {ForumTopicReopened} - Object of ForumTopicReopened
+  */
   ForumTopicReopened(params) {
     class ForumTopicReopened {
       constructor(params) {
@@ -1951,6 +2255,11 @@ class Type {
     return new ForumTopicReopened(params);
   }
 
+  /**
+   * @method GeneralForumTopicHidden
+   * @param {object} params
+   * @returns {GeneralForumTopicHidden}
+   */
   GeneralForumTopicHidden(params) {
     class GeneralForumTopicHidden {
       constructor(params) {
@@ -1963,6 +2272,11 @@ class Type {
     return new GeneralForumTopicHidden(params);
   }
 
+  /**
+   * @method GeneralForumTopicUnhidden
+   * @param {object} params
+   * @returns {GeneralForumTopicUnhidden}
+   */
   GeneralForumTopicUnhidden(params) {
     class GeneralForumTopicUnhidden {
       constructor(params) {
@@ -1975,6 +2289,13 @@ class Type {
     return new GeneralForumTopicUnhidden(params);
   }
 
+  /**
+   * @method UserShared
+   * @param {object} params - The parameters
+   * @param {number} params.request_id - The request ID
+   * @param {number} params.user_id - The user ID
+   * @returns {UserShared} The new data type as an object
+   */
   UserShared(params = {
     request_id,
     user_id
@@ -1997,6 +2318,13 @@ class Type {
     return new UserShared(params);
   }
 
+  /**
+   * @method ChatShared
+   * @param {Object} params - Object containing request_id and chat_id
+   * @param {string} params.request_id - Request id 
+   * @param {string} params.chat_id - Chat id 
+   * @returns {ChatShared}
+   */
   ChatShared(params = {
     request_id,
     chat_id
@@ -2019,6 +2347,11 @@ class Type {
     return new ChatShared(params);
   }
 
+  /** 
+  * @method WriteAccessAllowed
+  * @param {Object} params - The parameters used to create the WriteAccessAllowed instance
+  * @returns {WriteAccessAllowed}
+  */
   WriteAccessAllowed(params) {
     class WriteAccessAllowed {
       constructor(params) {
@@ -2031,6 +2364,12 @@ class Type {
     return new WriteAccessAllowed(params);
   }
 
+  /**
+   * @method VideoChatScheduled
+   * @param {Object} params
+   * @param {Date} params.start_date Start date of the Video Chat
+   * @return {VideoChatScheduled}
+   */
   VideoChatScheduled(params = {
     start_date
   }) {
@@ -2047,6 +2386,11 @@ class Type {
     return new VideoChatScheduled(params);
   }
 
+  /**
+   * @method VideoChatStarted
+   * @param {Object} params
+   * @returns {VideoChatStarted} A video chat started object.
+   */
   VideoChatStarted(params) {
     class VideoChatStarted {
       constructor(params) {
@@ -2059,6 +2403,12 @@ class Type {
     return new VideoChatStarted(params);
   }
 
+  /**
+   * @method VideoChatEnded
+   * @param {Object} params - An object containing the video chat details
+   * @param {number} params.duration - Duration of the video chat in seconds
+   * @returns {VideoChatEnded}
+   */
   VideoChatEnded(params = {
     duration
   }) {
@@ -2075,6 +2425,12 @@ class Type {
     return new VideoChatEnded(params);
   }
 
+  /**
+   * @method VideoChatParticipantsInvited
+   * @param {Object} params
+   * @param {Array.<Type.User>} params.users - a list of type User objects
+   * @returns {VideoChatParticipantsInvited} - new VideoChatParticipantsInvited object return
+   */
   VideoChatParticipantsInvited(params = {
     users
   }) {
@@ -2093,6 +2449,13 @@ class Type {
     return new VideoChatParticipantsInvited(params);
   }
 
+  /**
+   * @method UserProfilePhotos
+   * @param {object} params Parameter object which has `total_count` and `photos`
+   * @param {number} params.total_count Total count of photos
+   * @param {PhotoSize[][]} params.photos List of photo sizes in different sizes
+   * @returns {UserProfilePhotos} Returns an UserProfilePhoto instance
+   */
   UserProfilePhotos(params = {
     total_count,
     photos
@@ -2119,6 +2482,16 @@ class Type {
     return new UserProfilePhotos(params);
   }
 
+  /**
+   * @method File
+   * @description This method creates a new File object
+   * @param {object} params - Parameters for creating the File object
+   * @param {string} params.file_id - The unique identifier of the file
+   * @param {string} params.file_unique_id - The unique ID of the file
+   * @param {number} params.file_size - The size of the file
+   * @param {string} params.file_path - The path of the file
+   * @returns {File} A File object
+   */
   File(params = {
     file_id,
     file_unique_id,
@@ -2153,7 +2526,12 @@ class Type {
     return new File(params);
   }
 
-
+  /**
+   * @method WebAppInfo
+   * @param {Object} params
+   * @param {String} params.url - An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps
+   * @return {WebAppInfo}
+   */
   WebAppInfo(params = {
     url
   }) {
@@ -2170,6 +2548,17 @@ class Type {
     return new WebAppInfo(params);
   }
 
+  /**
+   * @method ReplyKeyboardMarkup
+   * @param {Object} params An object of the specified parameters 
+   * @param {Array} params.keyboard Array of Array of KeyboardButton objects representing the keyboard
+   * @param {Boolean} params.is_persistent Optional Whether the reply keyboard will remain active after first use
+   * @param {Boolean} params.resize_keyboard Optional Whether the keyboard must be resized to fit all the buttons
+   * @param {Boolean} params.one_time_keyboard Optional Requests clients to hide the keyboard as soon as it's been used
+   * @param {String} params.input_field_placeholder Optional The text that appears in the input field
+   * @param {Boolean} params.selective Optional Use this parameter selectively
+   * @returns {ReplyKeyboardMarkup} Returns an object representing a ReplyKeyboardMarkup object
+   */
   ReplyKeyboardMarkup(params = {
     keyboard,
     is_persistent,
@@ -2220,6 +2609,18 @@ class Type {
     return new ReplyKeyboardMarkup(params);
   }
 
+  /**
+   * @method KeyboardButton
+   * @param {Object} params 
+   * @param {String} params.text - Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
+   * @param {KeyboardButtonRequestUser} params.request_user - Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a “user_shared” service message. Available in private chats only.
+   * @param {KeyboardButtonRequestChat} params.request_chat - Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
+   * @param {Boolean} params.request_contact - Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only.
+   * @param {Boolean} params.request_location - Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only.
+   * @param {KeyboardButtonPollType} params.request_poll - Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only.
+   * @param {WebAppInfo} params.web_app - Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
+   * @returns {KeyboardButton}
+   */
   KeyboardButton(params = {
     text,
     request_user,
@@ -2272,6 +2673,14 @@ class Type {
     return new KeyboardButton(params);
   }
 
+  /**
+   * @method KeyboardButtonRequestUser  
+   * @param {Object} params - An object containing three properties. 
+   * @param {String} params.request_id - A unique identifier of the request you can use to travel back to the bot.  
+   * @param {Boolean} params.user_is_bot - Describes if a user is bot or not.
+   * @param {Boolean} params.user_is_premium - Describes if a user is a premium subscriber or not.
+   * @returns {KeyboardButtonRequestUser}
+   */
   KeyboardButtonRequestUser(params = {
     request_id,
     user_is_bot,
@@ -2300,6 +2709,20 @@ class Type {
     return new KeyboardButtonRequestUser(params);
   }
 
+  /**
+   * Returns a KeyboardButtonRequestChat object with parameters for Telegram bot API
+   * @method KeyboardButtonRequestChat
+   * @param {Object} params - An object of parameters
+   * @param {Number} params.request_id - Id of the request
+   * @param {Boolean} params.chat_is_channel - Is chat a channel
+   * @param {Boolean} params.chat_is_forum - Is chat a forum
+   * @param {Boolean} params.chat_has_username - Does chat have a username
+   * @param {Boolean} params.chat_is_created - Is chat created
+   * @param {Object} params.user_administrator_rights - Chat administrator rights of the user
+   * @param {Object} params.bot_administrator_rights - Chat administrator rights of the bot
+   * @param {Boolean} params.bot_is_member - Is bot a member of the chat
+   * @returns {KeyboardButtonRequestChat} - A KeyboardButtonRequestChat object
+   */
   KeyboardButtonRequestChat(params = {
     request_id,
     chat_is_channel,
@@ -2358,6 +2781,12 @@ class Type {
     return new KeyboardButtonRequestChat(params);
   }
 
+  /**
+   * @method KeyboardButtonPollType
+   * @param {Object} params 
+   * @param {String} params.type - Parameter specifying the type of a button used to create the poll 
+   * @returns {KeyboardButtonPollType}
+   */
   KeyboardButtonPollType(params = {
     type
   }) {
@@ -2374,6 +2803,13 @@ class Type {
     return new KeyboardButtonPollType(params);
   }
 
+  /**
+   * @method ReplyKeyboardRemove
+   * @param {Object} params - The parameters for the ReplyKeyboardRemove object
+   * @param {boolean} params.remove_keyboard - Requests clients to remove the custom keyboard
+   * @param {boolean} params.selective - Use this parameter if you want to remove the keyboard for specific users only
+   * @returns {ReplyKeyboardRemove} A ReplyKeyboardRemove object
+   */
   ReplyKeyboardRemove(params = {
     remove_keyboard,
     selective
@@ -2396,6 +2832,12 @@ class Type {
     return new ReplyKeyboardRemove(params);
   }
 
+  /**
+   * @method InlineKeyboardMarkup
+   * @param {Object} params - The parameters for the InlineKeyboardMarkup
+   * @param {Array} params.inline_keyboard - An array of arrays of InlineKeyboardButton objects
+   * @returns {InlineKeyboardMarkup} An InlineKeyboardMarkup object
+   */
   InlineKeyboardMarkup(params = {
     inline_keyboard
   }) {
@@ -2415,6 +2857,21 @@ class Type {
     }
     return new InlineKeyboardMarkup(params);
   }
+
+  /**
+   * @method InlineKeyboardButton
+   * @param {Object} params - An object containing the parameters for the inline keyboard button
+   * @param {String} params.text - Label text on the button
+   * @param {String} params.url - HTTP or tg:// url to be opened when button is pressed
+   * @param {String} params.callback_data - Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes
+   * @param {Object} params.web_app - A WebAppInfo object for a web page that will be opened via a button
+   * @param {Object} params.login_url - A LoginUrl object for a web page that will be opened via a button
+   * @param {String} params.switch_inline_query - If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted.
+   * @param {String} params.switch_inline_query_current_chat - If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case just the bot’s username will be inserted.
+   * @param {Object} params.callback_game - Description of the game that will be launched when the user presses the button
+   * @param {Boolean} params.pay - Specify True, to send a Pay button
+   * @returns {InlineKeyboardButton} An InlineKeyboardButton object
+   */
   InlineKeyboardButton(params = {
     text,
     url,
@@ -2479,6 +2936,15 @@ class Type {
     return new InlineKeyboardButton(params);
   }
 
+  /**
+   * @method LoginUrl
+   * @param {Object} params - The parameters for the LoginUrl object
+   * @param {String} params.url - The URL of the login page
+   * @param {String} params.forward_text - The text to be displayed on the login page
+   * @param {String} params.bot_username - The username of the bot
+   * @param {Boolean} params.request_write_access - Whether or not to request write access
+   * @returns {LoginUrl} - A new LoginUrl object
+   */
   LoginUrl(params = {
     url,
     forward_text,
@@ -2513,6 +2979,18 @@ class Type {
     return new LoginUrl(params);
   }
 
+  /**
+   * @method CallbackQuery
+   * @param {Object} params - An object containing the parameters for the CallbackQuery
+   * @param {String} params.id - Unique identifier for this query
+   * @param {Object} params.from - Sender
+   * @param {Object} params.message - Message with the callback button that originated the query
+   * @param {String} params.inline_message_id - Identifier of the message sent via the bot in inline mode, that originated the query
+   * @param {String} params.chat_instance - Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent
+   * @param {String} params.data - Data associated with the callback button
+   * @param {String} params.game_short_name - Short name of a Game to be returned, serves as the unique identifier for the game
+   * @returns {CallbackQuery}  - An object containing the parameters for the CallbackQuery
+   */
   CallbackQuery(params = {
     id,
     from,
@@ -2565,6 +3043,14 @@ class Type {
     return new CallbackQuery(params);
   }
 
+  /**
+   * @method ForceReply
+   * @param {Object} params - An object containing the parameters for the ForceReply.
+   * @param {boolean} params.force_reply - Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'.
+   * @param {string} params.input_field_placeholder - Optional. Placeholder text of the form.
+   * @param {boolean} params.selective - Optional. Use this parameter if you want to force reply from specific users only.
+   * @returns {ForceReply} - Returns an instance of the ForceReply class.
+   */
   ForceReply(params = {
     force_reply,
     input_field_placeholder,
@@ -2593,6 +3079,15 @@ class Type {
     return new ForceReply(params);
   }
 
+  /**
+   * @method ChatPhoto
+   * @param {Object} params - An object containing the parameters for the chat photo.
+   * @param {String} params.small_file_id - The file_id of the small version of the photo.
+   * @param {String} params.small_file_unique_id - The unique_id of the small version of the photo.
+   * @param {String} params.big_file_id - The file_id of the big version of the photo.
+   * @param {String} params.big_file_unique_id - The unique_id of the big version of the photo.
+   * @returns {ChatPhoto} - An object containing the chat photo information.
+   */
   ChatPhoto(params = {
     small_file_id,
     small_file_unique_id,
@@ -2612,23 +3107,198 @@ class Type {
         this.big_file_unique_id = big_file_unique_id;
       }
       get small_file_id() {
-        return this.small_file_id;
+        return this._small_file_id;
       }
       get small_file_unique_id() {
-        return this.small_file_unique_id;
+        return this._small_file_unique_id;
       }
       get big_file_id() {
-        return this.big_file_id;
+        return this._big_file_id;
       }
       get big_file_unique_id() {
-        return this.big_file_unique_id;
+        return this._big_file_unique_id;
       }
     }
     return new ChatPhoto(params);
   }
 
-  ChatInviteLink(params) { }
-  ChatAdministratorRights(params) { }
+  /**
+   * @method ChatInviteLink
+   * @param {Object} params - An object containing the parameters for the ChatInviteLink
+   * @param {String} params.invite_link - The invite link of the chat
+   * @param {Object} params.creator - The creator of the chat
+   * @param {Boolean} params.creates_join_request - Whether the chat creates join requests
+   * @param {Boolean} params.is_primary - Whether the chat is primary
+   * @param {Boolean} params.is_revoked - Whether the chat is revoked
+   * @param {String} params.name - The name of the chat
+   * @param {Date} params.expire_date - The expiration date of the chat
+   * @param {Number} params.member_limit - The member limit of the chat
+   * @param {Number} params.pending_join_request_count - The number of pending join requests
+   * @returns {ChatInviteLink} A new ChatInviteLink object
+   */
+  ChatInviteLink(params = {
+    invite_link,
+    creator,
+    creates_join_request,
+    is_primary,
+    is_revoked,
+    name,
+    expire_date,
+    member_limit,
+    pending_join_request_count
+  }) {
+    class ChatInviteLink {
+      constructor({
+        invite_link,
+        creator,
+        creates_join_request,
+        is_primary,
+        is_revoked,
+        name,
+        expire_date,
+        member_limit,
+        pending_join_request_count
+      }) {
+        this.invite_link = invite_link;
+        this.creator = creator;
+        this.big_creates_join_requestile_id = creates_join_request;
+        this.is_primary = is_primary;
+        this.is_revoked = is_revoked;
+        this.name = name;
+        this.expire_date = expire_date;
+        this.member_limit = member_limit;
+        this.pending_join_request_count = pending_join_request_count;
+      }
+      get invite_link() {
+        return this._invite_link;
+      }
+      get creator() {
+        return new Type().User(this._creator);
+      }
+      get big_creates_join_requestile_id() {
+        return this._big_creates_join_requestile_id;
+      }
+      get is_primary() {
+        return this._is_primary;
+      }
+      get is_revoked() {
+        return this._is_revoked;
+      }
+      get name() {
+        return this._name;
+      }
+      get expire_date() {
+        return this._expire_date;
+      }
+      get member_limit() {
+        return this._member_limit;
+      }
+      get pending_join_request_count() {
+        return this._pending_join_request_count;
+      }
+    }
+    return new ChatInviteLink(params);
+  }
+  
+  /**
+   * @method ChatAdministratorRights
+   * @param {Object} params - An object containing the parameters for the ChatAdministratorRights
+   * @param {boolean} params.is_anonymous - Indicates if the administrator is anonymous
+   * @param {boolean} params.can_manage_chat - Indicates if the administrator can manage the chat
+   * @param {boolean} params.can_delete_messages - Indicates if the administrator can delete messages
+   * @param {boolean} params.can_manage_video_chats - Indicates if the administrator can manage video chats
+   * @param {boolean} params.can_restrict_members - Indicates if the administrator can restrict members
+   * @param {boolean} params.can_promote_members - Indicates if the administrator can promote members
+   * @param {boolean} params.can_change_info - Indicates if the administrator can change info
+   * @param {boolean} params.can_invite_users - Indicates if the administrator can invite users
+   * @param {boolean} params.can_post_messages - Indicates if the administrator can post messages
+   * @param {boolean} params.can_edit_messages - Indicates if the administrator can edit messages
+   * @param {boolean} params.can_pin_messages - Indicates if the administrator can pin messages
+   * @param {boolean} params.can_manage_topics - Indicates if the administrator can manage topics
+   * @returns {ChatAdministratorRights} An object containing the ChatAdministratorRights
+   */
+  ChatAdministratorRights(params = {
+    is_anonymous,
+    can_manage_chat,
+    can_delete_messages,
+    can_manage_video_chats,
+    can_restrict_members,
+    can_promote_members,
+    can_change_info,
+    can_invite_users,
+    can_post_messages,
+    can_edit_messages,
+    can_pin_messages,
+    can_manage_topics
+  }) {
+    class ChatAdministratorRights {
+      constructor({
+        is_anonymous,
+        can_manage_chat,
+        can_delete_messages,
+        can_manage_video_chats,
+        can_restrict_members,
+        can_promote_members,
+        can_change_info,
+        can_invite_users,
+        can_post_messages,
+        can_edit_messages,
+        can_pin_messages,
+        can_manage_topics
+      }) {
+        this.is_anonymous = is_anonymous;
+        this.can_manage_chat = can_manage_chat;
+        this.can_delete_messages = can_delete_messages;
+        this.can_manage_video_chats = can_manage_video_chats;
+        this.can_restrict_members = can_restrict_members;
+        this.can_promote_members = can_promote_members;
+        this.can_change_info = can_change_info;
+        this.can_invite_users = can_invite_users;
+        this.can_post_messages = can_post_messages;
+        this.can_edit_messages = can_edit_messages;
+        this.can_pin_messages = can_pin_messages;
+        this.can_manage_topics = can_manage_topics;
+      }
+      get is_anonymous() {
+        return this._is_anonymous;
+      }
+      get can_manage_chat() {
+        return this._can_manage_chat;
+      }
+      get can_delete_messages() {
+        return this._can_delete_messages;
+      }
+      get can_manage_video_chats() {
+        return this._can_manage_video_chats;
+      }
+      get can_restrict_members() {
+        return this._can_restrict_members;
+      }
+      get can_promote_members() {
+        return this._can_promote_members;
+      }
+      get can_change_info() {
+        return this._can_change_info;
+      }
+      get can_invite_users() {
+        return this._can_invite_users;
+      }
+      get can_post_messages() {
+        return this._can_post_messages;
+      }
+      get can_edit_messages() {
+        return this._can_edit_messages;
+      }
+      get can_pin_messages() {
+        return this._can_pin_messages;
+      }
+      get can_manage_topics() {
+        return this._can_manage_topics;
+      }
+    }
+    return new ChatAdministratorRights(params);
+  }
+
   ChatMember(params) { }
   ChatMemberOwner(params) { }
   ChatMemberAdministrator(params) { }
@@ -2719,6 +3389,22 @@ class Type {
 
   PassportData(params) { }
   PassportFile(params) { }
+
+  /**
+   * @method EncryptedPassportElement
+   * @param {Object} params - An object containing the parameters for the EncryptedPassportElement
+   * @param {String} params.type - The type of the element
+   * @param {String} params.data - The data of the element
+   * @param {String} params.phone_number - The phone number of the element
+   * @param {String} params.email - The email of the element
+   * @param {Array} params.files - An array of PassportFile objects
+   * @param {Object} params.front_side - A PassportFile object
+   * @param {Object} params.reverse_side - A PassportFile object
+   * @param {Object} params.selfie - A PassportFile object
+   * @param {Array} params.translation - An array of PassportFile objects
+   * @param {String} params.hash - The hash of the element
+   * @returns {EncryptedPassportElement} An object containing the EncryptedPassportElement data
+   */
   EncryptedPassportElement(params = {
     type,
     data,
@@ -2792,6 +3478,15 @@ class Type {
     }
     return new EncryptedPassportElement(params);
   }
+
+  /**
+   * @method EncryptedCredentials
+   * @param {Object} params - The parameters for the EncryptedCredentials object
+   * @param {String} params.data - The data of the EncryptedCredentials object
+   * @param {String} params.hash - The hash of the EncryptedCredentials object
+   * @param {String} params.secret - The secret of the EncryptedCredentials object
+   * @returns {EncryptedCredentials} - An EncryptedCredentials object
+   */
   EncryptedCredentials(params = {
     data,
     hash,
@@ -2819,6 +3514,7 @@ class Type {
     }
     return new EncryptedCredentials(params);
   }
+
   PassportElementError(params) { }
   PassportElementErrorDataField(params) { }
   PassportElementErrorFrontSide(params) { }
@@ -2826,12 +3522,149 @@ class Type {
   PassportElementErrorSelfie(params) { }
   PassportElementErrorFile(params) { }
   PassportElementErrorFiles(params) { }
-  PassportElementErrorTranslationFile(params) { }
-  PassportElementErrorTranslationFiles(params) { }
-  PassportElementErrorUnspecified(params) { }
+
+  /**
+   * @method PassportElementErrorTranslationFile
+   * @param {Object} params
+   * @param {String} params.source - Error source, must be translation_files
+   * @param {String} params.type - Type of element of the user's Telegram Passport which has the issue, one of “passport”, “driver_license”, “identity_card”, “internal_passport”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
+   * @param {String} params.file_hash - Base64-encoded file hash
+   * @param {String} params.message - Error message
+   * @returns {PassportElementErrorTranslationFile}
+   */
+  PassportElementErrorTranslationFile(params = {
+    source,
+    type,
+    file_hash,
+    message
+  }) {
+    class PassportElementErrorTranslationFile {
+      constructor({
+        source,
+        type,
+        file_hash,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hash = file_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hash() {
+        return this._file_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorTranslationFile(params);
+  }
+
+  /**
+   * @method PassportElementErrorTranslationFiles
+   * @param {Object} params
+   * @param {String} params.source - Error source, must be translation_files
+   * @param {String} params.type - Type of element of the user's Telegram Passport which has the issue, one of “passport”, “driver_license”, “identity_card”, “internal_passport”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
+   * @param {Array} params.file_hashes - List of base64-encoded file hashes
+   * @param {String} params.message - Error message
+   * @returns {PassportElementErrorTranslationFiles}
+   */
+  PassportElementErrorTranslationFiles(params = {
+    source,
+    type,
+    file_hashes,
+    message
+  }) {
+    class PassportElementErrorTranslationFiles {
+      constructor({
+        source,
+        type,
+        file_hashes,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hashes = file_hashes;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hashes() {
+        return this._file_hashes;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorTranslationFiles(params);
+  }
+
+  /**
+   * @method PassportElementErrorUnspecified
+   * @param {Object} params
+   * @param {String} params.source - Error source, must be unspecified
+   * @param {String} params.type - Type of element of the user's Telegram Passport which has the issue
+   * @param {String} params.element_hash - Base64-encoded element hash
+   * @param {String} params.message - Error message
+   * @returns {PassportElementErrorUnspecified}
+   */
+  PassportElementErrorUnspecified(params = {
+    source,
+    type,
+    element_hash,
+    message
+  }) {
+    class PassportElementErrorUnspecified {
+      constructor({
+        source,
+        type,
+        element_hash,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.element_hash = element_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get element_hash() {
+        return this._element_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorUnspecified(params);
+  }
 
   // Games
 
+  /**
+   * @method Game
+   * @param {Object} params - An object containing the parameters for the game.
+   * @param {string} params.title - The title of the game.
+   * @param {string} params.description - The description of the game.
+   * @param {Object[]} params.photo - An array of photo objects.
+   * @param {string} params.text - The text of the game.
+   * @param {Object[]} params.text_entities - An array of message entity objects.
+   * @param {Object} params.animation - An animation object.
+   * @returns {Game} A new Game object.
+   */
   Game(params = {
     title,
     description,
@@ -2881,6 +3714,12 @@ class Type {
     }
     return new Game(params);
   }
+
+  /**
+   * @method CallbackGame
+   * @param {Object} params - The parameters of the game
+   * @returns {CallbackGame} - A new CallbackGame object
+   */
   CallbackGame(params) {
     class CallbackGame {
       constructor(params) {
@@ -2892,6 +3731,15 @@ class Type {
     }
     return new CallbackGame(params);
   }
+
+  /**
+   * @method GameHighScore
+   * @param {Object} params - The parameters for the GameHighScore object
+   * @param {Number} params.position - The position of the user in the game
+   * @param {Object} params.user - The user object
+   * @param {Number} params.score - The score of the user
+   * @returns {GameHighScore} - A new GameHighScore object
+   */
   GameHighScore(params = {
     position,
     user,
@@ -2917,5 +3765,6 @@ class Type {
         return this._score;
       }
     }
+    return new GameHighScore(params);
   }
 }
