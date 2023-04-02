@@ -3126,7 +3126,7 @@ class Type {
    * @method ChatInviteLink
    * @param {Object} params - An object containing the parameters for the ChatInviteLink
    * @param {String} params.invite_link - The invite link of the chat
-   * @param {Object} params.creator - The creator of the chat
+   * @param {User} params.creator - The creator of the chat
    * @param {Boolean} params.creates_join_request - Whether the chat creates join requests
    * @param {Boolean} params.is_primary - Whether the chat is primary
    * @param {Boolean} params.is_revoked - Whether the chat is revoked
@@ -3199,7 +3199,7 @@ class Type {
     }
     return new ChatInviteLink(params);
   }
-  
+
   /**
    * @method ChatAdministratorRights
    * @param {Object} params - An object containing the parameters for the ChatAdministratorRights
@@ -3299,96 +3299,1842 @@ class Type {
     return new ChatAdministratorRights(params);
   }
 
-  ChatMember(params) { }
-  ChatMemberOwner(params) { }
-  ChatMemberAdministrator(params) { }
-  ChatMemberRestricted(params) { }
-  ChatMemberLeft(params) { }
-  ChatMemberBanned(params) { }
-  ChatMemberUpdated(params) { }
-  ChatJoinRequest(params) { }
-  ChatPermissions(params) { }
-  ChatLocation(params) { }
-  ForumTopic(params) { }
-  BotCommand(params) { }
-  BotCommandScope(params) { }
-  BotCommandScopeDefault(params) { }
-  BotCommandScopeAllPrivateChats(params) { }
-  BotCommandScopeAllGroupChats(params) { }
-  BotCommandScopeAllChatAdministrators(params) { }
-  BotCommandScopeChat(params) { }
-  BotCommandScopeChatAdministrators(params) { }
-  BotCommandScopeChatMember(params) { }
-  BotDescription(params) { }
-  BotShortDescription(params) { }
-  MenuButton(params) { }
-  MenuButtonCommands(params) { }
-  MenuButtonWebApp(params) { }
-  MenuButtonDefault(params) { }
-  ResponseParameters(params) { }
-  InputMedia(params) { }
-  InputMediaPhoto(params) { }
-  InputMediaVideo(params) { }
-  InputMediaAnimation(params) { }
-  InputMediaAudio(params) { }
-  InputMediaDocument(params) { }
-  InputFile(params) { }
+  ChatMember(params = {
+    // TODO -----------------------------------------------------------------------------------------------------------------
+  }) { }
+
+  /**
+   * @method ChatMemberOwner
+   * @param {Object} params - An object containing the parameters for the ChatMemberOwner
+   * @param {String} params.status - The status of the user in the chat
+   * @param {User} params.user - An object containing the user's information
+   * @param {Boolean} params.is_anonymous - Whether the user is anonymous or not
+   * @param {String} params.custom_title - The custom title of the user
+   * @returns {ChatMemberOwner} A new ChatMemberOwner object
+   */
+  ChatMemberOwner(params = {
+    status,
+    user,
+    is_anonymous,
+    custom_title
+  }) {
+    class ChatMemberOwner {
+      constructor({
+        status,
+        user,
+        is_anonymous,
+        custom_title
+      }) {
+        this.status = status;
+        this.user = user;
+        this.is_anonymous = is_anonymous;
+        this.custom_title = custom_title;
+      }
+      get status() {
+        return this._status;
+      }
+      get user() {
+        return new Type().User(this._user);
+      }
+      get is_anonymous() {
+        return this._is_anonymous;
+      }
+      get custom_title() {
+        return this._custom_title;
+      }
+    }
+    return new ChatMemberOwner(params);
+  }
+
+  /**
+   * @method ChatMemberAdministrator
+   * @param {Object} params - An object containing the parameters for the ChatMemberAdministrator
+   * @param {String} params.status - The status of the user in the chat
+   * @param {User} params.user - The user object
+   * @param {Boolean} params.can_be_edited - Whether the user can be edited
+   * @param {Boolean} params.is_anonymous - Whether the user is anonymous
+   * @param {Boolean} params.can_manage_chat - Whether the user can manage the chat
+   * @param {Boolean} params.can_delete_messages - Whether the user can delete messages
+   * @param {Boolean} params.can_manage_video_chats - Whether the user can manage video chats
+   * @param {Boolean} params.can_restrict_members - Whether the user can restrict members
+   * @param {Boolean} params.can_promote_members - Whether the user can promote members
+   * @param {Boolean} params.can_change_info - Whether the user can change info
+   * @param {Boolean} params.can_invite_users - Whether the user can invite users
+   * @param {Boolean} params.can_post_messages - Whether the user can post messages
+   * @param {Boolean} params.can_edit_messages - Whether the user can edit messages
+   * @param {Boolean} params.can_pin_messages - Whether the user can pin messages
+   * @param {Boolean} params.can_manage_topics - Whether the user can manage topics
+   * @param {String} params.custom_title - The custom title of the user
+   * @returns {ChatMemberAdministrator} A new ChatMemberAdministrator object
+   */
+  ChatMemberAdministrator(params = {
+    status,
+    user,
+    can_be_edited,
+    is_anonymous,
+    can_manage_chat,
+    can_delete_messages,
+    can_manage_video_chats,
+    can_restrict_members,
+    can_promote_members,
+    can_change_info,
+    can_invite_users,
+    can_post_messages,
+    can_edit_messages,
+    can_pin_messages,
+    can_manage_topics,
+    custom_title
+  }) {
+    class ChatMemberAdministrator {
+      constructor({
+        status,
+        user,
+        can_be_edited,
+        is_anonymous,
+        can_manage_chat,
+        can_delete_messages,
+        can_manage_video_chats,
+        can_restrict_members,
+        can_promote_members,
+        can_change_info,
+        can_invite_users,
+        can_post_messages,
+        can_edit_messages,
+        can_pin_messages,
+        can_manage_topics,
+        custom_title
+      }) {
+        this.status = status;
+        this.user = user;
+        this.can_be_edited = can_be_edited;
+        this.is_anonymous = is_anonymous;
+        this.can_manage_chat = can_manage_chat;
+        this.can_delete_messages = can_delete_messages;
+        this.can_manage_video_chats = can_manage_video_chats;
+        this.can_restrict_members = can_restrict_members;
+        this.can_promote_members = can_promote_members;
+        this.can_change_info = can_change_info;
+        this.can_invite_users = can_invite_users;
+        this.can_post_messages = can_post_messages;
+        this.can_edit_messages = can_edit_messages;
+        this.can_pin_messages = can_pin_messages;
+        this.can_manage_topics = can_manage_topics;
+        this.custom_title = custom_title;
+      }
+      get status() {
+        return this._status;
+      }
+      get user() {
+        return new Type().User(this._user);
+      }
+      get can_be_edited() {
+        return this._can_be_edited;
+      }
+      get is_anonymous() {
+        return this._is_anonymous;
+      }
+      get can_manage_chat() {
+        return this._can_manage_chat;
+      }
+      get can_delete_messages() {
+        return this._can_delete_messages;
+      }
+      get can_manage_video_chats() {
+        return this._can_manage_video_chats;
+      }
+      get can_restrict_members() {
+        return this._can_restrict_members;
+      }
+      get can_promote_members() {
+        return this._can_promote_members;
+      }
+      get can_change_info() {
+        return this._can_change_info;
+      }
+      get can_invite_users() {
+        return this._can_invite_users;
+      }
+      get can_post_messages() {
+        return this._can_post_messages;
+      }
+      get can_edit_messages() {
+        return this._can_edit_messages;
+      }
+      get can_pin_messages() {
+        return this._can_pin_messages;
+      }
+      get can_manage_topics() {
+        return this._can_manage_topics;
+      }
+      get custom_title() {
+        return this._custom_title;
+      }
+    }
+    return new ChatMemberAdministrator(params);
+  }
+
+  /**
+   * @method ChatMemberMember
+   * @param {Object} params
+   * @param {String} params.status - The member's status in the chat, always “member”
+   * @param {User} params.user - Information about the user
+   * @returns {ChatMemberMember}
+   */
+  ChatMemberMember(params = {
+    status,
+    user
+  }) {
+    class ChatMemberMember {
+      constructor({
+        status,
+        user
+      }) {
+        this.status = status;
+        this.user = user;
+      }
+      get status() {
+        return this._status;
+      }
+      get user() {
+        return new Type().User(this._user);
+      }
+    }
+    return new ChatMemberMember(params);
+  }
+
+  /**
+   * @method ChatMemberRestricted
+   * @param {Object} params - An object containing the parameters for the ChatMemberRestricted data type
+   * @param {String} params.status - The status of the chat member
+   * @param {User} params.user - The user object of the chat member
+   * @param {Boolean} params.is_member - Whether the user is a member of the chat
+   * @param {Boolean} params.can_send_messages - Whether the user can send messages
+   * @param {Boolean} params.can_send_audios - Whether the user can send audios
+   * @param {Boolean} params.can_send_documents - Whether the user can send documents
+   * @param {Boolean} params.can_send_photos - Whether the user can send photos
+   * @param {Boolean} params.can_send_videos - Whether the user can send videos
+   * @param {Boolean} params.can_send_video_notes - Whether the user can send video notes
+   * @param {Boolean} params.can_send_voice_notes - Whether the user can send voice notes
+   * @param {Boolean} params.can_send_polls - Whether the user can send polls
+   * @param {Boolean} params.can_send_other_messages - Whether the user can send other messages
+   * @param {Boolean} params.can_add_web_page_previews - Whether the user can add web page previews
+   * @param {Boolean} params.can_change_info - Whether the user can change info
+   * @param {Boolean} params.can_invite_users - Whether the user can invite users
+   * @param {Boolean} params.can_pin_messages - Whether the user can pin messages
+   * @param {Boolean} params.can_manage_topics - Whether the user can manage topics
+   * @param {Number} params.until_date - The date until which the user is restricted
+   * @returns {ChatMemberRestricted} A new ChatMemberRestricted data type object
+   */
+  ChatMemberRestricted(params = {
+    status,
+    user,
+    is_member,
+    can_send_messages,
+    can_send_audios,
+    can_send_documents,
+    can_send_photos,
+    can_send_videos,
+    can_send_video_notes,
+    can_send_voice_notes,
+    can_send_polls,
+    can_send_other_messages,
+    can_add_web_page_previews,
+    can_change_info,
+    can_invite_users,
+    can_pin_messages,
+    can_manage_topics,
+    until_date
+  }) {
+    class ChatMemberRestricted {
+      constructor({
+        status,
+        user,
+        is_member,
+        can_send_messages,
+        can_send_audios,
+        can_send_documents,
+        can_send_photos,
+        can_send_videos,
+        can_send_video_notes,
+        can_send_voice_notes,
+        can_send_polls,
+        can_send_other_messages,
+        can_add_web_page_previews,
+        can_change_info,
+        can_invite_users,
+        can_pin_messages,
+        can_manage_topics,
+        until_date
+      }) {
+        this.status = status;
+        this.user = user;
+        this.is_member = is_member;
+        this.can_send_messages = can_send_messages;
+        this.can_send_audios = can_send_audios;
+        this.can_send_documents = can_send_documents;
+        this.can_send_photos = can_send_photos;
+        this.can_send_videos = can_send_videos;
+        this.can_send_video_notes = can_send_video_notes;
+        this.can_send_voice_notes = can_send_voice_notes;
+        this.can_send_polls = can_send_polls;
+        this.can_send_other_messages = can_send_other_messages;
+        this.can_add_web_page_previews = can_add_web_page_previews;
+        this.can_change_info = can_change_info;
+        this.can_invite_users = can_invite_users;
+        this.can_pin_messages = can_pin_messages;
+        this.can_manage_topics = can_manage_topics;
+        this.until_date = until_date;
+      }
+      get status() {
+        return this._status;
+      }
+      get user() {
+        return new Type().User(this._user);
+      }
+      get is_member() {
+        return this._is_member;
+      }
+      get can_send_messages() {
+        return this._can_send_messages;
+      }
+      get can_send_audios() {
+        return this._can_send_audios;
+      }
+      get can_send_documents() {
+        return this._can_send_documents;
+      }
+      get can_send_photos() {
+        return this._can_send_photos;
+      }
+      get can_send_videos() {
+        return this._can_send_videos;
+      }
+      get can_send_video_notes() {
+        return this._can_send_video_notes;
+      }
+      get can_send_voice_notes() {
+        return this._can_send_voice_notes;
+      }
+      get can_send_polls() {
+        return this._can_send_polls;
+      }
+      get can_send_other_messages() {
+        return this._can_send_other_messages;
+      }
+      get can_add_web_page_previews() {
+        return this._can_add_web_page_previews;
+      }
+      get can_change_info() {
+        return this._can_change_info;
+      }
+      get can_invite_users() {
+        return this._can_invite_users;
+      }
+      get can_pin_messages() {
+        return this._can_pin_messages;
+      }
+      get can_manage_topics() {
+        return this._can_manage_topics;
+      }
+      get until_date() {
+        return this._until_date;
+      }
+    }
+    return new ChatMemberRestricted(params);
+  }
+
+  /**
+   * @method ChatMemberLeft
+   * @param {Object} params
+   * @param {String} params.status - The member's status in the chat, always “left”
+   * @param {User} params.user - Information about the user
+   * @returns {ChatMemberLeft}
+   */
+  ChatMemberLeft(params = {
+    status,
+    user
+  }) {
+    class ChatMemberLeft {
+      constructor({
+        status,
+        user
+      }) {
+        this.status = status;
+        this.user = user;
+      }
+      get status() {
+        return this._status;
+      }
+      get user() {
+        return new Type().User(this._user);
+      }
+    }
+    return new ChatMemberLeft(params);
+  }
+
+  /**
+   * @method ChatMemberBanned
+   * @param {Object} params - An object containing the parameters for the ChatMemberBanned data type
+   * @param {String} params.status - The status of the user in the chat
+   * @param {Object} params.user - The user object
+   * @param {Number} params.until_date - The date until which the user is banned
+   * @returns {ChatMemberBanned}
+   */
+  ChatMemberBanned(params = {
+    status,
+    user,
+    until_date
+  }) {
+    class ChatMemberBanned {
+      constructor({
+        status,
+        user,
+        until_date
+      }) {
+        this.status = status;
+        this.user = user;
+        this.until_date = until_date;
+      }
+      get status() {
+        return this._status;
+      }
+      get user() {
+        return new Type().User(this._user);
+      }
+      get until_date() {
+        return this._until_date;
+      }
+    }
+    return new ChatMemberBanned(params);
+  }
+
+  /**
+   * @method ChatMemberUpdated
+   * @param {Object} params - An object containing the parameters for the chat member update
+   * @param {Object} params.chat - The chat object
+   * @param {Object} params.from - The user object of the user who initiated the update
+   * @param {Date} params.date - The date of the update
+   * @param {Object} params.old_chat_member - The old chat member object
+   * @param {Object} params.new_chat_member - The new chat member object
+   * @param {String} params.invite_link - The invite link for the chat
+   * @returns {ChatMemberUpdated} A new ChatMemberUpdated object
+   */
+  ChatMemberUpdated(params = {
+    chat,
+    from,
+    date,
+    old_chat_member,
+    new_chat_member,
+    invite_link
+  }) {
+    class ChatMemberUpdated {
+      constructor({
+        chat,
+        from,
+        date,
+        old_chat_member,
+        new_chat_member,
+        invite_link
+      }) {
+        this.chat = chat;
+        this.from = from;
+        this.date = date;
+        this.old_chat_member = old_chat_member;
+        this.new_chat_member = new_chat_member;
+        this.invite_link = invite_link;
+      }
+      get chat() {
+        return new Type().Chat(this._chat);
+      }
+      get from() {
+        return new Type().User(this._from);
+      }
+      get date() {
+        return this._date;
+      }
+      get old_chat_member() {
+        return new Type().ChatMember(this._old_chat_member);
+      }
+      get new_chat_member() {
+        return new Type().ChatMember(this._new_chat_member);
+      }
+      get invite_link() {
+        return new Type().ChatInviteLink(this._invite_link);
+      }
+    }
+    return new ChatMemberUpdated(params);
+  }
+
+  /**
+   * @method ChatJoinRequest
+   * @param {Object} params - An object containing the parameters for the ChatJoinRequest
+   * @param {Chat} params.chat - The chat object
+   * @param {User} params.from - The user object
+   * @param {Number} params.user_chat_id - The user chat id
+   * @param {Date} params.date - The date of the request
+   * @param {String} params.bio - The user bio
+   * @param {ChatInviteLink	} params.invite_link - The invite link
+   * @returns {ChatJoinRequest} - A new ChatJoinRequest object
+   */
+  ChatJoinRequest(params = {
+    chat,
+    from,
+    user_chat_id,
+    date,
+    bio,
+    invite_link
+  }) {
+    class ChatJoinRequest {
+      constructor({
+        chat,
+        from,
+        user_chat_id,
+        date,
+        bio,
+        invite_link
+      }) {
+        this.chat = chat;
+        this.from = from;
+        this.user_chat_id = user_chat_id;
+        this.date = date;
+        this.bio = bio;
+        this.invite_link = invite_link;
+      }
+      get chat() {
+        return new Type().Chat(this._chat);
+      }
+      get from() {
+        return new Type().User(this._from);
+      }
+      get user_chat_id() {
+        return this._user_chat_id;
+      }
+      get date() {
+        return this._date;
+      }
+      get bio() {
+        return this._bio;
+      }
+      get invite_link() {
+        return new Type().ChatInviteLink(this._invite_link);
+      }
+    }
+    return new ChatJoinRequest(params);
+  }
+
+  /**
+   * @method ChatPermissions
+   * @param {Object} params - An object containing the parameters for the chat permissions
+   * @param {boolean} params.can_send_messages - Whether the user can send messages
+   * @param {boolean} params.can_send_audios - Whether the user can send audios
+   * @param {boolean} params.can_send_documents - Whether the user can send documents
+   * @param {boolean} params.can_send_photos - Whether the user can send photos
+   * @param {boolean} params.can_send_videos - Whether the user can send videos
+   * @param {boolean} params.can_send_video_notes - Whether the user can send video notes
+   * @param {boolean} params.can_send_voice_notes - Whether the user can send voice notes
+   * @param {boolean} params.can_send_polls - Whether the user can send polls
+   * @param {boolean} params.can_send_other_messages - Whether the user can send other messages
+   * @param {boolean} params.can_add_web_page_previews - Whether the user can add web page previews
+   * @param {boolean} params.can_change_info - Whether the user can change info
+   * @param {boolean} params.can_invite_users - Whether the user can invite users
+   * @param {boolean} params.can_pin_messages - Whether the user can pin messages
+   * @param {boolean} params.can_manage_topics - Whether the user can manage topics
+   * @returns {ChatPermissions} - An object containing the chat permissions
+   */
+  ChatPermissions(params = {
+    can_send_messages,
+    can_send_audios,
+    can_send_documents,
+    can_send_photos,
+    can_send_videos,
+    can_send_video_notes,
+    can_send_voice_notes,
+    can_send_polls,
+    can_send_other_messages,
+    can_add_web_page_previews,
+    can_change_info,
+    can_invite_users,
+    can_pin_messages,
+    can_manage_topics
+  }) {
+    class ChatPermissions {
+      constructor({
+        can_send_messages,
+        can_send_audios,
+        can_send_documents,
+        can_send_photos,
+        can_send_videos,
+        can_send_video_notes,
+        can_send_voice_notes,
+        can_send_polls,
+        can_send_other_messages,
+        can_add_web_page_previews,
+        can_change_info,
+        can_invite_users,
+        can_pin_messages,
+        can_manage_topics
+      }) {
+        this.can_send_messages = can_send_messages;
+        this.can_send_audios = can_send_audios;
+        this.can_send_documents = can_send_documents;
+        this.can_send_photos = can_send_photos;
+        this.can_send_videos = can_send_videos;
+        this.can_send_video_notes = can_send_video_notes;
+        this.can_send_voice_notes = can_send_voice_notes;
+        this.can_send_polls = can_send_polls;
+        this.can_send_other_messages = can_send_other_messages;
+        this.can_add_web_page_previews = can_add_web_page_previews;
+        this.can_change_info = can_change_info;
+        this.can_invite_users = can_invite_users;
+        this.can_pin_messages = can_pin_messages;
+        this.can_manage_topics = can_manage_topics;
+      }
+      get can_send_messages() {
+        return this._can_send_messages;
+      }
+      get can_send_audios() {
+        return this._can_send_audios;
+      }
+      get can_send_documents() {
+        return this._can_send_documents;
+      }
+      get can_send_photos() {
+        return this._can_send_photos;
+      }
+      get can_send_videos() {
+        return this._can_send_videos;
+      }
+      get can_send_video_notes() {
+        return this._can_send_video_notes;
+      }
+      get can_send_voice_notes() {
+        return this._can_send_voice_notes;
+      }
+      get can_send_polls() {
+        return this._can_send_polls;
+      }
+      get can_send_other_messages() {
+        return this._can_send_other_messages;
+      }
+      get can_add_web_page_previews() {
+        return this._can_add_web_page_previews;
+      }
+      get can_change_info() {
+        return this._can_change_info;
+      }
+      get can_invite_users() {
+        return this._can_invite_users;
+      }
+      get can_pin_messages() {
+        return this._can_pin_messages;
+      }
+      get can_manage_topics() {
+        return this._can_manage_topics;
+      }
+    }
+    return new ChatPermissions(params);
+  }
+
+  /**
+   * @method ChatLocation
+   * @param {Object} params - The parameters of the ChatLocation
+   * @param {Location} params.location - The location of the ChatLocation
+   * @param {String} params.address - The address of the ChatLocation
+   * @returns {ChatLocation} - A new ChatLocation object
+   */
+  ChatLocation(params = {
+    location,
+    address
+  }) {
+    class ChatLocation {
+      constructor({
+        location,
+        address
+      }) {
+        this.location = location;
+        this.address = address;
+      }
+      get location() {
+        return new Type().Location(this._location);
+      }
+      get address() {
+        return this._address;
+      }
+    }
+    return new ChatLocation(params);
+  }
+
+  /**
+   * @method ForumTopic
+   * @param {Object} params - An object containing the parameters for the ForumTopic
+   * @param {string} params.message_thread_id - The ID of the message thread
+   * @param {string} params.name - The name of the forum topic
+   * @param {string} params.icon_color - The color of the forum topic icon
+   * @param {string} params.icon_custom_emoji_id - The ID of the custom emoji for the forum topic icon
+   * @returns {ForumTopic} A new ForumTopic object
+   */
+  ForumTopic(params = {
+    message_thread_id,
+    name,
+    icon_color,
+    icon_custom_emoji_id
+  }) {
+    class ForumTopic {
+      constructor({
+        message_thread_id,
+        name,
+        icon_color,
+        icon_custom_emoji_id
+      }) {
+        this.message_thread_id = message_thread_id;
+        this.name = name;
+        this.icon_color = icon_color;
+        this.icon_custom_emoji_id = icon_custom_emoji_id;
+      }
+      get message_thread_id() {
+        return this._message_thread_id;
+      }
+      get name() {
+        return this._name;
+      }
+      get icon_color() {
+        return this._icon_color;
+      }
+      get icon_custom_emoji_id() {
+        return this._icon_custom_emoji_id;
+      }
+    }
+    return new ForumTopic(params);
+  }
+
+  /**
+   * @method BotCommand
+   * @param {Object} params - The parameters for the BotCommand
+   * @param {String} params.command - The command for the BotCommand
+   * @param {String} params.description - The description for the BotCommand
+   * @returns {BotCommand} - A new BotCommand object
+   */
+  BotCommand(params = {
+    command,
+    description
+  }) {
+    class BotCommand {
+      constructor({
+        command,
+        description
+      }) {
+        this.command = command;
+        this.description = description;
+      }
+      get command() {
+        return this._command;
+      }
+      get description() {
+        return this._description;
+      }
+    }
+    return new BotCommand(params);
+  }
+
+  BotCommandScope(params = {
+    // TODO -----------------------------------------------------------------------------------------------------------------
+  }) { }
+
+  /**
+   * @method BotCommandScopeDefault
+   * @param {Object} params
+   * @param {String} params.type - Scope type, must be default
+   * @returns {BotCommandScopeDefault}
+   */
+  BotCommandScopeDefault(params = {
+    type
+  }) {
+    class BotCommandScopeDefault {
+      constructor({
+        type
+      }) {
+        this.type = type;
+      }
+      get type() {
+        return this._type;
+      }
+    }
+    return new BotCommandScopeDefault(params);
+  }
+
+  /**
+   * @method BotCommandScopeAllPrivateChats
+   * @param {Object} params
+   * @param {String} params.type - Scope type, must be all_private_chats
+   * @returns {BotCommandScopeAllPrivateChats}
+   */
+  BotCommandScopeAllPrivateChats(params = {
+    type
+  }) {
+    class BotCommandScopeAllPrivateChats {
+      constructor({
+        type
+      }) {
+        this.type = type;
+      }
+      get type() {
+        return this._type;
+      }
+    }
+    return new BotCommandScopeAllPrivateChats(params);
+  }
+
+  /**
+   * @method BotCommandScopeAllGroupChats
+   * @param {Object} params
+   * @param {String} params.type - Scope type, must be all_chat_administrators
+   * @returns {BotCommandScopeAllGroupChats}
+   */
+  BotCommandScopeAllGroupChats(params = {
+    type
+  }) {
+    class BotCommandScopeAllGroupChats {
+      constructor({
+        type
+      }) {
+        this.type = type;
+      }
+      get type() {
+        return this._type;
+      }
+    }
+    return new BotCommandScopeAllGroupChats(params);
+  }
+
+  /**
+   * @method BotCommandScopeAllChatAdministrators
+   * @param {Object} params
+   * @param {String} params.type - Scope type, must be chat_administrators
+   * @param {Number} params.chat_id - Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+   * @returns {BotCommandScopeAllChatAdministrators}
+   */
+  BotCommandScopeAllChatAdministrators(params = {
+    type,
+    chat_id
+  }) {
+    class BotCommandScopeAllChatAdministrators {
+      constructor({
+        type,
+        chat_id
+      }) {
+        this.type = type;
+        this.chat_id = chat_id;
+      }
+      get type() {
+        return this._type;
+      }
+      get chat_id() {
+        return this._chat_id;
+      }
+    }
+    return new BotCommandScopeAllChatAdministrators(params);
+  }
+
+  /**
+   * @method BotCommandScopeChat
+   * @param {Object} params - An object containing the type and chat_id of the bot command scope chat
+   * @param {String} params.type - The type of the bot command scope chat
+   * @param {Number} params.chat_id - The chat id of the bot command scope chat
+   * @returns {BotCommandScopeChat} - A new BotCommandScopeChat object
+   */
+  BotCommandScopeChat(params = {
+    type,
+    chat_id
+  }) {
+    class BotCommandScopeChat {
+      constructor({
+        type,
+        chat_id
+      }) {
+        this.type = type;
+        this.chat_id = chat_id;
+      }
+      get type() {
+        return this._type;
+      }
+      get chat_id() {
+        return this._chat_id;
+      }
+    }
+    return new BotCommandScopeChat(params);
+  }
+
+  /**
+   * @method BotCommandScopeChatAdministrators
+   * @param {Object} params
+   * @param {String} params.type - Scope type, must be chat_administrators
+   * @param {Number} params.chat_id - Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+   * @returns {BotCommandScopeChatAdministrators}
+   */
+  BotCommandScopeChatAdministrators(params = {
+    type,
+    chat_id
+  }) {
+    class BotCommandScopeChatAdministrators {
+      constructor({
+        type,
+        chat_id
+      }) {
+        this.type = type;
+        this.chat_id = chat_id;
+      }
+      get type() {
+        return this._type;
+      }
+      get chat_id() {
+        return this._chat_id;
+      }
+    }
+    return new BotCommandScopeChatAdministrators(params);
+  }
+
+  /**
+   * @method BotCommandScopeChatMember
+   * @param {Object} params - An object containing the parameters for the BotCommandScopeChatMember
+   * @param {String} params.type - Scope type, must be chat_member
+   * @param {Number} params.chat_id - Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+   * @param {Number} params.user_id - Unique identifier of the target user
+   * @returns {BotCommandScopeChatMember} A new BotCommandScopeChatMember object
+   */
+  BotCommandScopeChatMember(params = {
+    type,
+    chat_id,
+    user_id
+  }) {
+    class BotCommandScopeChatMember {
+      constructor({
+        type,
+        chat_id,
+        user_id
+      }) {
+        this.type = type;
+        this.chat_id = chat_id;
+        this.user_id = user_id;
+      }
+      get type() {
+        return this._type;
+      }
+      get chat_id() {
+        return this._chat_id;
+      }
+      get user_id() {
+        return this._user_id;
+      }
+    }
+    return new BotCommandScopeChatMember(params);
+  }
+
+  /**
+   * @method BotDescription
+   * @param {Object} params - The parameters for the BotDescription
+   * @param {String} params.description - The description of the bot
+   * @returns {BotDescription} - A new BotDescription object
+   */
+  BotDescription(params = {
+    description
+  }) {
+    class BotDescription {
+      constructor({
+        description
+      }) {
+        this.description = description;
+      }
+      get description() {
+        return this._description;
+      }
+    }
+    return new BotDescription(params);
+  }
+
+  /**
+   * @method BotShortDescription
+   * @param {Object} params - The parameters for the BotShortDescription
+   * @param {String} params.short_description - The bot's short description
+   * @returns {BotShortDescription}
+   */
+  BotShortDescription(params = {
+    short_description
+  }) {
+    class BotShortDescription {
+      constructor({
+        short_description
+      }) {
+        this.short_description = short_description;
+      }
+      get short_description() {
+        return this._short_description;
+      }
+    }
+    return new BotShortDescription(params);
+  }
+
+  MenuButton(params = {
+    // TODO -----------------------------------------------------------------------------------------------------------------
+  }) { }
+
+  /**
+   * @method MenuButtonCommands
+   * @param {Object} params
+   * @param {String} params.type - Type of the button, must be commands
+   * @returns {MenuButtonCommands}
+   */
+  MenuButtonCommands(params = {
+    type
+  }) {
+    class MenuButtonCommands {
+      constructor({
+        type
+      }) {
+        this.type = type;
+      }
+      get type() {
+        return this._type;
+      }
+    }
+    return new MenuButtonCommands(params);
+  }
+
+  /**
+   * @method MenuButtonWebApp
+   * @param {Object} params - The parameters for the MenuButtonWebApp
+   * @param {String} params.type - The type of the button
+   * @param {String} params.text - The text of the button
+   * @param {WebAppInfo} params.web_app - The web app of the button
+   * @returns {MenuButtonWebApp} - A new MenuButtonWebApp object
+   */
+  MenuButtonWebApp(params = {
+    type,
+    text,
+    web_app
+  }) {
+    class MenuButtonWebApp {
+      constructor({
+        type,
+        text,
+        web_app
+      }) {
+        this.type = type;
+        this.text = text;
+        this.web_app = web_app;
+      }
+      get type() {
+        return this._type;
+      }
+      get text() {
+        return this._text;
+      }
+      get web_app() {
+        return new Type().WebAppInfo(this._web_app);
+      }
+    }
+    return new MenuButtonWebApp(params);
+  }
+
+  /**
+   * @method MenuButtonDefault
+   * @param {Object} params
+   * @param {String} params.type - Type of the button, must be default
+   * @returns {MenuButtonDefault}
+   */
+  MenuButtonDefault(params = {
+    type
+  }) {
+    class MenuButtonDefault {
+      constructor({
+        type
+      }) {
+        this.type = type;
+      }
+      get type() {
+        return this._type;
+      }
+    }
+    return new MenuButtonDefault(params);
+  }
+
+  /**
+   * @method ResponseParameters
+   * @param {Object} params - Parameters for the response
+   * @param {Number} params.migrate_to_chat_id - The chat id to migrate to
+   * @param {Number} params.retry_after - The time to wait before retrying
+   * @returns {ResponseParameters} - A new ResponseParameters object
+   */
+  ResponseParameters(params = {
+    migrate_to_chat_id,
+    retry_after
+  }) {
+    class ResponseParameters {
+      constructor({
+        migrate_to_chat_id,
+        retry_after
+      }) {
+        this.migrate_to_chat_id = migrate_to_chat_id;
+        this.retry_after = retry_after;
+      }
+      get migrate_to_chat_id() {
+        return this._migrate_to_chat_id;
+      }
+      get retry_after() {
+        return this._retry_after;
+      }
+    }
+    return new ResponseParameters(params);
+  }
+
+  InputMedia(params = {
+    // TODO -----------------------------------------------------------------------------------------------------------------
+  }) { }
+
+  /**
+   * @method InputMediaPhoto
+   * @param {Object} params - An object containing the parameters for the InputMediaPhoto
+   * @param {String} params.type - The type of the media
+   * @param {String} params.media - The media file to send
+   * @param {String} params.caption - The caption of the media
+   * @param {String} params.parse_mode - The parse mode of the caption
+   * @param {Array} params.caption_entities - An array of caption entities
+   * @param {Boolean} params.has_spoiler - Whether the media contains a spoiler
+   * @returns {InputMediaPhoto} - An object containing the parameters for the InputMediaPhoto
+   */
+  InputMediaPhoto(params = {
+    type,
+    media,
+    caption,
+    parse_mode,
+    caption_entities,
+    has_spoiler
+  }) {
+    class InputMediaPhoto {
+      constructor({
+        type,
+        media,
+        caption,
+        parse_mode,
+        caption_entities,
+        has_spoiler
+      }) {
+        this.type = type;
+        this.media = media;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.has_spoiler = has_spoiler;
+      }
+      get type() {
+        return this._type;
+      }
+      get media() {
+        return this._media;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get has_spoiler() {
+        return this._has_spoiler;
+      }
+    }
+    return new InputMediaPhoto(params);
+  }
+
+  /**
+   * @method InputMediaVideo
+   * @param {Object} params - An object containing the parameters for the InputMediaVideo
+   * @param {String} params.type - The type of the media
+   * @param {String} params.media - File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name
+   * @param {InputFile|String} params.thumbnail - Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
+   * @param {String} params.caption - Optional. Caption of the video to be sent, 0-1024 characters
+   * @param {String} params.parse_mode - Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption
+   * @param {Object} params.caption_entities - Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+   * @param {Number} params.width - Optional. Video width
+   * @param {Number} params.height - Optional. Video height
+   * @param {Number} params.duration - Optional. Video duration
+   * @param {Boolean} params.supports_streaming - Optional. Pass True, if the uploaded video is suitable for streaming
+   * @param {Boolean} params.has_spoiler - Optional. Pass True, if the uploaded video contains a spoiler
+   * @returns {InputMediaVideo} An object containing the parameters for the InputMediaVideo
+   */
+  InputMediaVideo(params = {
+    type,
+    media,
+    thumbnail,
+    caption,
+    parse_mode,
+    caption_entities,
+    width,
+    height,
+    duration,
+    supports_streaming,
+    has_spoiler
+  }) {
+    class InputMediaVideo {
+      constructor({
+        type,
+        media,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        width,
+        height,
+        duration,
+        supports_streaming,
+        has_spoiler
+      }) {
+        this.type = type;
+        this.media = media;
+        this.thumbnail = thumbnail;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.width = width;
+        this.height = height;
+        this.duration = duration;
+        this.supports_streaming = supports_streaming;
+        this.has_spoiler = has_spoiler;
+      }
+      get type() {
+        return this._type;
+      }
+      get media() {
+        return this._media;
+      }
+      get thumbnail() {
+        return this._thumbnail;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get width() {
+        return this._width;
+      }
+      get height() {
+        return this._height;
+      }
+      get duration() {
+        return this._duration;
+      }
+      get supports_streaming() {
+        return this._supports_streaming;
+      }
+      get has_spoiler() {
+        return this._has_spoiler;
+      }
+    }
+    return new InputMediaVideo(params);
+  }
+
+  /**
+   * @method InputMediaAnimation
+   * @param {Object} params - An object containing the parameters for the InputMediaAnimation
+   * @param {String} params.type - The type of the media
+   * @param {String} params.media - File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name
+   * @param {InputFile|String} params.thumbnail - Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side
+   * @param {String} params.caption - Optional. Caption of the animation to be sent, 0-1024 characters
+   * @param {String} params.parse_mode - Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption
+   * @param {Object[]} params.caption_entities - Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+   * @param {Number} params.width - Optional. Animation width
+   * @param {Number} params.height - Optional. Animation height
+   * @param {Number} params.duration - Optional. Animation duration
+   * @param {Boolean} params.has_spoiler - Optional. Pass True, if the uploaded animation is suitable for sensitive content
+   * @returns {InputMediaAnimation} An object containing the parameters for the InputMediaAnimation
+   */
+  InputMediaAnimation(params = {
+    type,
+    media,
+    thumbnail,
+    caption,
+    parse_mode,
+    caption_entities,
+    width,
+    height,
+    duration,
+    has_spoiler
+  }) {
+    class InputMediaAnimation {
+      constructor({
+        type,
+        media,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        width,
+        height,
+        duration,
+        has_spoiler
+      }) {
+        this.type = type;
+        this.media = media;
+        this.thumbnail = thumbnail;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.width = width;
+        this.height = height;
+        this.duration = duration;
+        this.has_spoiler = has_spoiler;
+      }
+      get type() {
+        return this._type;
+      }
+      get media() {
+        return this._media;
+      }
+      get thumbnail() {
+        return this._thumbnail;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get width() {
+        return this._width;
+      }
+      get height() {
+        return this._height;
+      }
+      get duration() {
+        return this._duration;
+      }
+      get has_spoiler() {
+        return this._has_spoiler;
+      }
+    }
+    return new InputMediaAnimation(params);
+  }
+
+  /**
+   * @method InputMediaAudio
+   * @param {Object} params - An object containing the parameters for the InputMediaAudio
+   * @param {String} params.type - The type of the media
+   * @param {String} params.media - File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name
+   * @param {InputFile|String} params.thumbnail - Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data
+   * @param {String} params.caption - Optional. Caption of the audio to be sent, 0-1024 characters
+   * @param {String} params.parse_mode - Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption
+   * @param {Object[]} params.caption_entities - Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+   * @param {Number} params.duration - Optional. Duration of the audio in seconds
+   * @param {String} params.performer - Optional. Performer of the audio
+   * @param {String} params.title - Optional. Title of the audio
+   * @returns {InputMediaAudio} An object containing the parameters for the InputMediaAudio
+   */
+  InputMediaAudio(params = {
+    type,
+    media,
+    thumbnail,
+    caption,
+    parse_mode,
+    caption_entities,
+    duration,
+    performer,
+    title
+  }) {
+    class InputMediaAudio {
+      constructor({
+        type,
+        media,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        duration,
+        performer,
+        title
+      }) {
+        this.type = type;
+        this.media = media;
+        this.thumbnail = thumbnail;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.duration = duration;
+        this.performer = performer;
+        this.title = title;
+      }
+      get type() {
+        return this._type;
+      }
+      get media() {
+        return this._media;
+      }
+      get thumbnail() {
+        return this._thumbnail;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get duration() {
+        return this._duration;
+      }
+      get performer() {
+        return this._performer;
+      }
+      get title() {
+        return this._title;
+      }
+    }
+    return new InputMediaAudio(params);
+  }
+
+  /**
+   * @method InputMediaDocument
+   * @param {Object} params - An object containing the parameters for the InputMediaDocument
+   * @param {String} params.type - The type of the media
+   * @param {String} params.media - The file ID of the media
+   * @param {InputFile|String} params.thumbnail - The file ID of the thumbnail
+   * @param {String} params.caption - The caption of the media
+   * @param {String} params.parse_mode - The parse mode of the caption
+   * @param {Object} params.caption_entities - The caption entities of the caption
+   * @param {Boolean} params.disable_content_type_detection - Whether to disable content type detection
+   * @returns {InputMediaDocument} An object containing the parameters for the InputMediaDocument
+   */
+  InputMediaDocument(params = {
+    type,
+    media,
+    thumbnail,
+    caption,
+    parse_mode,
+    caption_entities,
+    disable_content_type_detection
+  }) {
+    class InputMediaDocument {
+      constructor({
+        type,
+        media,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        disable_content_type_detection
+      }) {
+        this.type = type;
+        this.media = media;
+        this.thumbnail = thumbnail;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.disable_content_type_detection = disable_content_type_detection;
+      }
+      get type() {
+        return this._type;
+      }
+      get media() {
+        return this._media;
+      }
+      get thumbnail() {
+        return this._thumbnail;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get disable_content_type_detection() {
+        return this._disable_content_type_detection;
+      }
+    }
+    return new InputMediaDocument(params);
+  }
+
+  InputFile(params = {
+    // TODO -----------------------------------------------------------------------------------------------------------------
+  }) { }
 
   // Stickers
 
-  Sticker(params) { }
-  StickerSet(params) { }
-  MaskPosition(params) { }
-  InputSticker(params) { }
+  /**
+   * @method Sticker
+   * @param {Object} params - An object containing the parameters for the sticker
+   * @param {String} params.file_id - The unique identifier for this file
+   * @param {String} params.file_unique_id - The unique identifier for this file
+   * @param {String} params.type - The type of the file (usually 'sticker')
+   * @param {Number} params.width - The width of the sticker
+   * @param {Number} params.height - The height of the sticker
+   * @param {Boolean} params.is_animated - Whether the sticker is animated
+   * @param {Boolean} params.is_video - Whether the sticker is a video
+   * @param {PhotoSize} params.thumbnail - An object containing the thumbnail of the sticker
+   * @param {String} params.emoji - The emoji associated with the sticker
+   * @param {String} params.set_name - The name of the sticker set
+   * @param {File} params.premium_animation - Whether the sticker has premium animation
+   * @param {MaskPosition} params.mask_position - An object containing the position of the mask
+   * @param {String} params.custom_emoji_id - The unique identifier for the custom emoji
+   * @param {Boolean} params.needs_repainting - Whether the sticker needs repainting
+   * @param {Number} params.file_size - The size of the file
+   * @returns {Sticker} A new Sticker object
+   */
+  Sticker(params = {
+    file_id,
+    file_unique_id,
+    type,
+    width,
+    height,
+    is_animated,
+    is_video,
+    thumbnail,
+    emoji,
+    set_name,
+    premium_animation,
+    mask_position,
+    custom_emoji_id,
+    needs_repainting,
+    file_size
+  }) {
+    class Sticker {
+      constructor({
+        file_id,
+        file_unique_id,
+        type,
+        width,
+        height,
+        is_animated,
+        is_video,
+        thumbnail,
+        emoji,
+        set_name,
+        premium_animation,
+        mask_position,
+        custom_emoji_id,
+        needs_repainting,
+        file_size
+      }) {
+        this.file_id = file_id;
+        this.file_unique_id = file_unique_id;
+        this.type = type;
+        this.width = width;
+        this.height = height;
+        this.is_animated = is_animated;
+        this.is_video = is_video;
+        this.thumbnail = thumbnail;
+        this.emoji = emoji;
+        this.set_name = set_name;
+        this.premium_animation = premium_animation;
+        this.mask_position = mask_position;
+        this.custom_emoji_id = custom_emoji_id;
+        this.needs_repainting = needs_repainting;
+        this.file_size = file_size;
+      }
+      get file_id() {
+        return this._file_id;
+      }
+      get file_unique_id() {
+        return this._file_unique_id;
+      }
+      get type() {
+        return this._type;
+      }
+      get width() {
+        return this._width;
+      }
+      get height() {
+        return this._height;
+      }
+      get is_animated() {
+        return this._is_animated;
+      }
+      get is_video() {
+        return this._is_video;
+      }
+      get thumbnail() {
+        return new Type().PhotoSize(this._thumbnail);
+      }
+      get emoji() {
+        return this._emoji;
+      }
+      get set_name() {
+        return this._set_name;
+      }
+      get premium_animation() {
+        return new Type().File(this._premium_animation);
+      }
+      get mask_position() {
+        return new Type().MaskPosition(this._mask_position);
+      }
+      get custom_emoji_id() {
+        return this._custom_emoji_id;
+      }
+      get needs_repainting() {
+        return this._needs_repainting;
+      }
+      get file_size() {
+        return this._file_size;
+      }
+    }
+    return new Sticker(params);
+  }
+
+  /**
+   * @method StickerSet
+   * @param {Object} params - An object containing the parameters for the StickerSet
+   * @param {String} params.name - The name of the StickerSet
+   * @param {String} params.title - The title of the StickerSet
+   * @param {String} params.sticker_type - The type of the StickerSet
+   * @param {Boolean} params.is_animated - Whether the StickerSet is animated
+   * @param {Boolean} params.is_video - Whether the StickerSet is a video
+   * @param {Array} params.stickers - An array of stickers in the StickerSet
+   * @param {Object} params.thumbnail - An object containing the thumbnail of the StickerSet
+   * @returns {StickerSet} A new StickerSet object
+   */
+  StickerSet(params = {
+    name,
+    title,
+    sticker_type,
+    is_animated,
+    is_video,
+    stickers,
+    thumbnail
+  }) {
+    class StickerSet {
+      constructor({
+        name,
+        title,
+        sticker_type,
+        is_animated,
+        is_video,
+        stickers,
+        thumbnail
+      }) {
+        this.name = name;
+        this.title = title;
+        this.sticker_type = sticker_type;
+        this.is_animated = is_animated;
+        this.is_video = is_video;
+        this.stickers = stickers;
+        this.thumbnail = thumbnail;
+      }
+      get name() {
+        return this._name;
+      }
+      get title() {
+        return this._title;
+      }
+      get sticker_type() {
+        return this._sticker_type;
+      }
+      get is_animated() {
+        return this._is_animated;
+      }
+      get is_video() {
+        return this._is_video;
+      }
+      get stickers() {
+        return this._stickers.map(element => {
+          return new Type().Sticker(element);
+        });
+      }
+      get thumbnail() {
+        return new Type().PhotoSize(this._thumbnail);
+      }
+    }
+    return new StickerSet(params);
+  }
+
+  /**
+   * @method MaskPosition
+   * @param {Object} params - An object containing the parameters for the MaskPosition
+   * @param {String} params.point - The part of the face relative to which the mask should be placed
+   * @param {Number} params.x_shift - Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position
+   * @param {Number} params.y_shift - Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position
+   * @param {Number} params.scale - Mask scaling coefficient. For example, 2.0 means double size
+   * @returns {MaskPosition} A new MaskPosition object
+   */
+  MaskPosition(params = {
+    point,
+    x_shift,
+    y_shift,
+    scale
+  }) {
+    class MaskPosition {
+      constructor({
+        point,
+        x_shift,
+        y_shift,
+        scale
+      }) {
+        this.point = point;
+        this.x_shift = x_shift;
+        this.y_shift = y_shift;
+        this.scale = scale;
+      }
+      get point() {
+        return this._point;
+      }
+      get x_shift() {
+        return this._x_shift;
+      }
+      get y_shift() {
+        return this._y_shift;
+      }
+      get scale() {
+        return this._scale;
+      }
+    }
+    return new MaskPosition(params);
+  }
+
+  /**
+   * @method InputSticker
+   * @param {Object} params - An object containing the parameters for the InputSticker
+   * @param {InputFile|String} params.sticker - The sticker object
+   * @param {Array} params.emoji_list - An array of emoji strings
+   * @param {MaskPosition} params.mask_position - The position of the mask
+   * @param {Array} params.keywords - An array of keywords
+   * @returns {InputSticker} An object containing the parameters for the InputSticker
+   */
+  InputSticker(params = {
+    sticker,
+    emoji_list,
+    mask_position,
+    keywords
+  }) {
+    class InputSticker {
+      constructor({
+        sticker,
+        emoji_list,
+        mask_position,
+        keywords
+      }) {
+        this.sticker = sticker;
+        this.emoji_list = emoji_list;
+        this.mask_position = mask_position;
+        this.keywords = keywords;
+      }
+      get sticker() {
+        return this._sticker;
+      }
+      get emoji_list() {
+        return this._emoji_list.map(element => {
+          return element
+        });
+      }
+      get mask_position() {
+        return new Type().MaskPosition(this._mask_position);
+      }
+      get keywords() {
+        return this._keywords.map(element => {
+          return element
+        });
+      }
+    }
+    return new InputSticker(params);
+  }
 
   // Inline mode
 
-  InlineQuery(params) { }
-  InlineQueryResult(params) { }
-  InlineQueryResultCachedAudio(params) { }
-  InlineQueryResultCachedDocument(params) { }
-  InlineQueryResultCachedGif(params) { }
-  InlineQueryResultCachedMpeg4Gif(params) { }
-  InlineQueryResultCachedPhoto(params) { }
-  InlineQueryResultCachedSticker(params) { }
-  InlineQueryResultCachedVideo(params) { }
-  InlineQueryResultCachedVoice(params) { }
-  InlineQueryResultArticle(params) { }
-  InlineQueryResultAudio(params) { }
-  InlineQueryResultContact(params) { }
-  InlineQueryResultGame(params) { }
-  InlineQueryResultDocument(params) { }
-  InlineQueryResultGif(params) { }
-  InlineQueryResultLocation(params) { }
-  InlineQueryResultMpeg4Gif(params) { }
-  InlineQueryResultPhoto(params) { }
-  InlineQueryResultVenue(params) { }
-  InlineQueryResultVideo(params) { }
-  InlineQueryResultVoice(params) { }
-  InputMessageContent(params) { }
-  InputTextMessageContent(params) { }
-  InputLocationMessageContent(params) { }
-  InputVenueMessageContent(params) { }
-  InputContactMessageContent(params) { }
-  InputInvoiceMessageContent(params) { }
-  ChosenInlineResult(params) { }
-  SentWebAppMessage(params) { }
+  InlineQuery(params = {}) { }
+  
+  InlineQueryResult(params = {}) { }
+
+  InlineQueryResultCachedAudio(params = {}) { }
+
+  InlineQueryResultCachedDocument(params = {}) { }
+
+  InlineQueryResultCachedGif(params = {}) { }
+
+  InlineQueryResultCachedMpeg4Gif(params = {}) { }
+
+  InlineQueryResultCachedPhoto(params = {}) { }
+
+  InlineQueryResultCachedSticker(params = {}) { }
+
+  InlineQueryResultCachedVideo(params = {}) { }
+
+  InlineQueryResultCachedVoice(params = {}) { }
+
+  InlineQueryResultArticle(params = {}) { }
+
+  InlineQueryResultAudio(params = {}) { }
+
+  InlineQueryResultContact(params = {}) { }
+
+  InlineQueryResultGame(params = {}) { }
+
+  InlineQueryResultDocument(params = {}) { }
+
+  InlineQueryResultGif(params = {}) { }
+
+  InlineQueryResultLocation(params = {}) { }
+
+  InlineQueryResultMpeg4Gif(params = {}) { }
+
+  InlineQueryResultPhoto(params = {}) { }
+
+  InlineQueryResultVenue(params = {}) { }
+
+  InlineQueryResultVideo(params = {}) { }
+
+  InlineQueryResultVoice(params = {}) { }
+
+  InputMessageContent(params = {}) { }
+
+  InputTextMessageContent(params = {}) { }
+
+  InputLocationMessageContent(params = {}) { }
+
+  InputVenueMessageContent(params = {}) { }
+
+  InputContactMessageContent(params = {}) { }
+
+  InputInvoiceMessageContent(params = {}) { }
+
+  ChosenInlineResult(params = {}) { }
+
+  SentWebAppMessage(params = {}) { }
 
   // Payments
 
-  LabeledPrice(params) { }
-  Invoice(params) { }
-  ShippingAddress(params) { }
-  OrderInfo(params) { }
-  ShippingOption(params) { }
-  SuccessfulPayment(params) { }
-  ShippingQuery(params) { }
-  PreCheckoutQuery(params) { }
+  LabeledPrice(params = {}) { }
+  Invoice(params = {}) { }
+  ShippingAddress(params = {}) { }
+  OrderInfo(params = {}) { }
+  ShippingOption(params = {}) { }
+  SuccessfulPayment(params = {}) { }
+  ShippingQuery(params = {}) { }
+  PreCheckoutQuery(params = {}) { }
 
   // Telegram Passport
 
-  PassportData(params) { }
-  PassportFile(params) { }
+  PassportData(params = {}) { }
+  PassportFile(params = {}) { }
 
   /**
    * @method EncryptedPassportElement
@@ -3515,13 +5261,13 @@ class Type {
     return new EncryptedCredentials(params);
   }
 
-  PassportElementError(params) { }
-  PassportElementErrorDataField(params) { }
-  PassportElementErrorFrontSide(params) { }
-  PassportElementErrorReverseSide(params) { }
-  PassportElementErrorSelfie(params) { }
-  PassportElementErrorFile(params) { }
-  PassportElementErrorFiles(params) { }
+  PassportElementError(params = {}) { }
+  PassportElementErrorDataField(params = {}) { }
+  PassportElementErrorFrontSide(params = {}) { }
+  PassportElementErrorReverseSide(params = {}) { }
+  PassportElementErrorSelfie(params = {}) { }
+  PassportElementErrorFile(params = {}) { }
+  PassportElementErrorFiles(params = {}) { }
 
   /**
    * @method PassportElementErrorTranslationFile
