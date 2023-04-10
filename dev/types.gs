@@ -786,7 +786,7 @@ class Type {
         return this._text;
       }
       get entities() {
-        return this._entities.map(function (element) {
+        return this._entities.map(element => {
           return new Type().MessageEntity(element)
         });
       }
@@ -800,7 +800,7 @@ class Type {
         return new Type().Document(this._document);
       }
       get photo() {
-        return this._photo.map(function (element) {
+        return this._photo.map(element => {
           return new Type().PhotoSize(element)
         });
       }
@@ -820,7 +820,7 @@ class Type {
         return this._caption;
       }
       get caption_entities() {
-        return this._caption_entities.map(function (element) {
+        return this._caption_entities.map(element => {
           return new Type().MessageEntity(element);
         });
       }
@@ -846,7 +846,7 @@ class Type {
         return new Type().Location(this._location);
       }
       get new_chat_members() {
-        return this._new_chat_members.map(function (element) {
+        return this._new_chat_members.map(element => {
           return new Type().User(element)
         });
       }
@@ -1695,15 +1695,15 @@ class Type {
   }
 
   /**
-  * @method Contact
-  * @param {Object} params 
-  * @param {Number} params.phone_number - Contact's phone number
-  * @param {String} params.first_name - Contact's first name
-  * @param {String} params.last_name - Optional. Contact's last name
-  * @param {String} params.user_id - Optional. Contact's user identifier in Telegram. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
-  * @param {String} params.vcard - Optional. Additional data about the contact in the form of a vCard
-  * @returns {Contact} returns an instance of Contact
-  */
+   * @method Contact
+   * @param {Object} params 
+   * @param {Number} params.phone_number - Contact's phone number
+   * @param {String} params.first_name - Contact's first name
+   * @param {String} params.last_name - Optional. Contact's last name
+   * @param {String} params.user_id - Optional. Contact's user identifier in Telegram. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
+   * @param {String} params.vcard - Optional. Additional data about the contact in the form of a vCard
+   * @returns {Contact} returns an instance of Contact
+   */
   Contact(params = {
     phone_number,
     first_name,
@@ -1908,7 +1908,7 @@ class Type {
         return this._question;
       }
       get options() {
-        return this._options.map(function (element) {
+        return this._options.map(element => {
           return new Type().PollOption(element)
         });
       }
@@ -1934,7 +1934,7 @@ class Type {
         return this._explanation;
       }
       get explanation_entities() {
-        return this._explanation_entities.map(function (element) {
+        return this._explanation_entities.map(element => {
           return new Type().MessageEntity(element)
         });
       }
@@ -2242,7 +2242,7 @@ class Type {
    * @method ForumTopicReopened
    * @param {Object} params
    * @return {ForumTopicReopened} - Object of ForumTopicReopened
-  */
+   */
   ForumTopicReopened(params) {
     class ForumTopicReopened {
       constructor(params) {
@@ -2348,10 +2348,10 @@ class Type {
   }
 
   /** 
-  * @method WriteAccessAllowed
-  * @param {Object} params - The parameters used to create the WriteAccessAllowed instance
-  * @returns {WriteAccessAllowed}
-  */
+   * @method WriteAccessAllowed
+   * @param {Object} params - The parameters used to create the WriteAccessAllowed instance
+   * @returns {WriteAccessAllowed}
+   */
   WriteAccessAllowed(params) {
     class WriteAccessAllowed {
       constructor(params) {
@@ -2441,7 +2441,7 @@ class Type {
         this.users = users;
       }
       get users() {
-        return this._users.map(function (element) {
+        return this._users.map(element => {
           return new Type().User(element)
         });
       }
@@ -4386,9 +4386,20 @@ class Type {
     return new ResponseParameters(params);
   }
 
-  InputMedia(params = {
-    // TODO -----------------------------------------------------------------------------------------------------------------
-  }) { }
+  InputMedia(params) {
+    switch (params.type) {
+      case 'photo':
+        return new Type().InputMediaPhoto(params);
+      case 'video':
+        return new Type().InputMediaVideo(params);
+      case 'animation':
+        return new Type().InputMediaAnimation(params);
+      case 'audio':
+        return new Type().InputMediaAudio(params);
+      case 'document':
+        return new Type().InputMediaDocument(params);
+    }
+  }
 
   /**
    * @method InputMediaPhoto
@@ -4777,8 +4788,11 @@ class Type {
   }
 
   InputFile(params = {
+    file_id,
+    file_url
+  }) {
     // TODO -----------------------------------------------------------------------------------------------------------------
-  }) { }
+  }
 
   // Stickers
 
@@ -5060,81 +5074,2385 @@ class Type {
 
   // Inline mode
 
-  InlineQuery(params = {}) { }
-  
-  InlineQueryResult(params = {}) { }
+  InlineQuery(params = {
+    id,
+    from,
+    query,
+    offset,
+    chat_type,
+    location
+  }) {
+    class InlineQuery {
+      constructor({
+        id,
+        from,
+        query,
+        offset,
+        chat_type,
+        location
+      }) {
+        this.id = id;
+        this.from = from;
+        this.query = query;
+        this.offset = offset;
+        this.chat_type = chat_type;
+        this.location = location;
+      }
+      get id() {
+        return this._id;
+      }
+      get from() {
+        return new Type().User(this._from);
+      }
+      get query() {
+        return this._query;
+      }
+      get offset() {
+        return this._offset;
+      }
+      get chat_type() {
+        return this._chat_type;
+      }
+      get location() {
+        return new Type().Location(this._location);
+      }
+    }
+    return new InlineQuery(params);
+  }
 
-  InlineQueryResultCachedAudio(params = {}) { }
+  InlineQueryResult(params) {
+    switch (params.type) {
+      case 'article':  // /banCheck
+        return new Type().InlineQueryResultArticle(params);
+      case 'photo':
+        if (params.photo_file_id) {
+          return new Type().InlineQueryResultCachedPhoto(params);
+        } else {
+          return new Type().InlineQueryResultPhoto(params);
+        }
+      case 'gif':
+        if (params.gif_file_id) {
+          return new Type().InlineQueryResultCachedGif(params);
+        } else {
+          return new Type().InlineQueryResultGif(params);
+        }
+      case 'mpeg4_gif':
+        if (params.mpeg4_file_id) {
+          return new Type().InlineQueryResultCachedMpeg4Gif(params);
+        } else {
+          return new Type().InlineQueryResultMpeg4Gif(params);
+        }
+      case 'video':
+        if (params.video_file_id) {
+          return new Type().InlineQueryResultCachedVideo(params);
+        } else {
+          return new Type().InlineQueryResultVideo(params);
+        }
+      case 'audio':
+        if (params.audio_file_id) {
+          return new Type().InlineQueryResultCachedAudio(params);
+        } else {
+          return new Type().InlineQueryResultAudio(params);
+        }
+      case 'voice':
+        if (params.voice_file_id) {
+          return new Type().InlineQueryResultCachedVoice(params);
+        } else {
+          return new Type().InlineQueryResultVoice(params);
+        }
+      case 'document':
+        if (params.document_file_id) {
+          return new Type().InlineQueryResultCachedDocument(params);
+        } else {
+          return new Type().InlineQueryResultDocument(params);
+        }
+      case 'location':
+        return new Type().InlineQueryResultLocation(params);
+      case 'venue':
+        return new Type().InlineQueryResultVenue(params);
+      case 'contact':
+        return new Type().InlineQueryResultContact(params);
+      case 'game':
+        return new Type().InlineQueryResultGame(params);
+    }
+  }
 
-  InlineQueryResultCachedDocument(params = {}) { }
+  InlineQueryResultCachedAudio(params = {
+    type,
+    id,
+    audio_file_id,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedAudio {
+      constructor({
+        type,
+        id,
+        audio_file_id,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.audio_file_id = audio_file_id;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get audio_file_id() {
+        return this._audio_file_id;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedAudio(params);
+  }
 
-  InlineQueryResultCachedGif(params = {}) { }
+  InlineQueryResultCachedDocument(params = {
+    type,
+    id,
+    title,
+    document_file_id,
+    description,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedDocument {
+      constructor({
+        type,
+        id,
+        title,
+        document_file_id,
+        description,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.title = title;
+        this.document_file_id = document_file_id;
+        this.description = description;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get title() {
+        return this._title;
+      }
+      get document_file_id() {
+        return this._document_file_id;
+      }
+      get description() {
+        return this._description;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedDocument(params);
+  }
 
-  InlineQueryResultCachedMpeg4Gif(params = {}) { }
+  InlineQueryResultCachedGif(params = {
+    type,
+    id,
+    gif_file_id,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedGif {
+      constructor({
+        type,
+        id,
+        gif_file_id,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.gif_file_id = gif_file_id;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get gif_file_id() {
+        return this._gif_file_id;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedGif(params);
+  }
 
-  InlineQueryResultCachedPhoto(params = {}) { }
+  InlineQueryResultCachedMpeg4Gif(params = {
+    type,
+    id,
+    mpeg4_file_id,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedMpeg4Gif {
+      constructor({
+        type,
+        id,
+        mpeg4_file_id,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.mpeg4_file_id = mpeg4_file_id;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get mpeg4_file_id() {
+        return this._mpeg4_file_id;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedMpeg4Gif(params);
+  }
 
-  InlineQueryResultCachedSticker(params = {}) { }
+  InlineQueryResultCachedPhoto(params = {
+    type,
+    id,
+    photo_file_id,
+    title,
+    description,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedPhoto {
+      constructor({
+        type,
+        id,
+        photo_file_id,
+        title,
+        description,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.photo_file_id = photo_file_id;
+        this.title = title;
+        this.description = description;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get photo_file_id() {
+        return this._photo_file_id;
+      }
+      get title() {
+        return this._title;
+      }
+      get description() {
+        return this._description;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedPhoto(params);
+  }
 
-  InlineQueryResultCachedVideo(params = {}) { }
+  InlineQueryResultCachedSticker(params = {
+    type,
+    id,
+    sticker_file_id,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedSticker {
+      constructor({
+        type,
+        id,
+        sticker_file_id,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.sticker_file_id = sticker_file_id;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get sticker_file_id() {
+        return this._sticker_file_id;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedSticker(params);
+  }
 
-  InlineQueryResultCachedVoice(params = {}) { }
+  InlineQueryResultCachedVideo(params = {
+    type,
+    id,
+    video_file_id,
+    title,
+    description,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedVideo {
+      constructor({
+        type,
+        id,
+        video_file_id,
+        title,
+        description,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.video_file_id = video_file_id;
+        this.title = title;
+        this.description = description;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get video_file_id() {
+        return this._video_file_id;
+      }
+      get title() {
+        return this._title;
+      }
+      get description() {
+        return this._description;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedVideo(params);
+  }
 
-  InlineQueryResultArticle(params = {}) { }
+  InlineQueryResultCachedVoice(params = {
+    type,
+    id,
+    voice_file_id,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultCachedVoice {
+      constructor({
+        type,
+        id,
+        voice_file_id,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.voice_file_id = voice_file_id;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get voice_file_id() {
+        return this._voice_file_id;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultCachedVoice(params);
+  }
 
-  InlineQueryResultAudio(params = {}) { }
+  InlineQueryResultArticle(params = {
+    type,
+    id,
+    title,
+    input_message_content,
+    reply_markup,
+    url,
+    hide_url,
+    description,
+    thumbnail_url,
+    thumbnail_width,
+    thumbnail_height
+  }) {
+    class InlineQueryResultArticle {
+      constructor({
+        type,
+        id,
+        title,
+        input_message_content,
+        reply_markup,
+        url,
+        hide_url,
+        description,
+        thumbnail_url,
+        thumbnail_width,
+        thumbnail_height
+      }) {
+        this.type = type;
+        this.id = id;
+        this.title = title;
+        this.input_message_content = input_message_content;
+        this.reply_markup = reply_markup;
+        this.url = url;
+        this.hide_url = hide_url;
+        this.description = description;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_width = thumbnail_width;
+        this.thumbnail_height = thumbnail_height;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get title() {
+        return this._title;
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get url() {
+        return this._url;
+      }
+      get hide_url() {
+        return this._hide_url;
+      }
+      get description() {
+        return this._description;
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_width() {
+        return this._thumbnail_width;
+      }
+      get thumbnail_height() {
+        return this._thumbnail_height;
+      }
+    }
+    return new InlineQueryResultArticle(params);
+  }
 
-  InlineQueryResultContact(params = {}) { }
+  InlineQueryResultAudio(params = {
+    type,
+    id,
+    audio_url,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    performer,
+    audio_duration,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultAudio {
+      constructor({
+        type,
+        id,
+        audio_url,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        performer,
+        audio_duration,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.audio_url = audio_url;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.performer = performer;
+        this.audio_duration = audio_duration;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get audio_url() {
+        return this._audio_url;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get performer() {
+        return this._performer;
+      }
+      get audio_duration() {
+        return this._audio_duration;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultAudio(params);
+  }
 
-  InlineQueryResultGame(params = {}) { }
+  InlineQueryResultContact(params = {
+    type,
+    id,
+    phone_number,
+    first_name,
+    last_name,
+    vcard,
+    reply_markup,
+    input_message_content,
+    thumbnail_url,
+    thumbnail_width,
+    thumbnail_height
+  }) {
+    class InlineQueryResultContact {
+      constructor({
+        type,
+        id,
+        phone_number,
+        first_name,
+        last_name,
+        vcard,
+        reply_markup,
+        input_message_content,
+        thumbnail_url,
+        thumbnail_width,
+        thumbnail_height
+      }) {
+        this.type = type;
+        this.id = id;
+        this.phone_number = phone_number;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.vcard = vcard;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_width = thumbnail_width;
+        this.thumbnail_height = thumbnail_height;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get phone_number() {
+        return this._phone_number;
+      }
+      get first_name() {
+        return this._first_name;
+      }
+      get last_name() {
+        return this._last_name;
+      }
+      get vcard() {
+        return this._vcard;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_width() {
+        return this._thumbnail_width;
+      }
+      get thumbnail_height() {
+        return this._thumbnail_height;
+      }
+    }
+    return new InlineQueryResultContact(params);
+  }
 
-  InlineQueryResultDocument(params = {}) { }
+  InlineQueryResultGame(params = {
+    type,
+    id,
+    game_short_name,
+    reply_markup
+  }) {
+    class InlineQueryResultGame {
+      constructor({
+        type,
+        id,
+        game_short_name,
+        reply_markup
+      }) {
+        this.type = type;
+        this.id = id;
+        this.game_short_name = game_short_name;
+        this.reply_markup = reply_markup;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get game_short_name() {
+        return this._game_short_name;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+    }
+    return new InlineQueryResultGame(params);
+  }
 
-  InlineQueryResultGif(params = {}) { }
+  InlineQueryResultDocument(params = {
+    type,
+    id,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    document_url,
+    mime_type,
+    description,
+    reply_markup,
+    input_message_content,
+    thumbnail_url,
+    thumbnail_width,
+    thumbnail_height
+  }) {
+    class InlineQueryResultDocument {
+      constructor({
+        type,
+        id,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        document_url,
+        mime_type,
+        description,
+        reply_markup,
+        input_message_content,
+        thumbnail_url,
+        thumbnail_width,
+        thumbnail_height
+      }) {
+        this.type = type;
+        this.id = id;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.document_url = document_url;
+        this.mime_type = mime_type;
+        this.description = description;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_width = thumbnail_width;
+        this.thumbnail_height = thumbnail_height;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get document_url() {
+        return this._document_url;
+      }
+      get mime_type() {
+        return this._mime_type;
+      }
+      get description() {
+        return this._description;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_width() {
+        return this._thumbnail_width;
+      }
+      get thumbnail_height() {
+        return this._thumbnail_height;
+      }
+    }
+    return new InlineQueryResultDocument(params);
+  }
 
-  InlineQueryResultLocation(params = {}) { }
+  InlineQueryResultGif(params = {
+    type,
+    id,
+    gif_url,
+    gif_width,
+    gif_height,
+    gif_duration,
+    thumbnail_url,
+    thumbnail_mime_type,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultGif {
+      constructor({
+        type,
+        id,
+        gif_url,
+        gif_width,
+        gif_height,
+        gif_duration,
+        thumbnail_url,
+        thumbnail_mime_type,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.gif_url = gif_url;
+        this.gif_width = gif_width;
+        this.gif_height = gif_height;
+        this.gif_duration = gif_duration;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_mime_type = thumbnail_mime_type;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get gif_url() {
+        return this._gif_url;
+      }
+      get gif_width() {
+        return this._gif_width;
+      }
+      get gif_height() {
+        return this._gif_height;
+      }
+      get gif_duration() {
+        return this._gif_duration;
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_mime_type() {
+        return this._thumbnail_mime_type;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultGif(params);
+  }
 
-  InlineQueryResultMpeg4Gif(params = {}) { }
+  InlineQueryResultLocation(params = {
+    type,
+    id,
+    latitude,
+    longitude,
+    title,
+    horizontal_accuracy,
+    live_period,
+    heading,
+    proximity_alert_radius,
+    reply_markup,
+    input_message_content,
+    thumbnail_url,
+    thumbnail_width,
+    thumbnail_height
+  }) {
+    class InlineQueryResultLocation {
+      constructor({
+        type,
+        id,
+        latitude,
+        longitude,
+        title,
+        horizontal_accuracy,
+        live_period,
+        heading,
+        proximity_alert_radius,
+        reply_markup,
+        input_message_content,
+        thumbnail_url,
+        thumbnail_width,
+        thumbnail_height
+      }) {
+        this.type = type;
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.title = title;
+        this.horizontal_accuracy = horizontal_accuracy;
+        this.live_period = live_period;
+        this.heading = heading;
+        this.proximity_alert_radius = proximity_alert_radius;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_width = thumbnail_width;
+        this.thumbnail_height = thumbnail_height;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get latitude() {
+        return this._latitude;
+      }
+      get longitude() {
+        return this._longitude;
+      }
+      get title() {
+        return this._title;
+      }
+      get horizontal_accuracy() {
+        return this._horizontal_accuracy;
+      }
+      get live_period() {
+        return this._live_period;
+      }
+      get heading() {
+        return this._heading;
+      }
+      get proximity_alert_radius() {
+        return this._proximity_alert_radius;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_width() {
+        return this._thumbnail_width;
+      }
+      get thumbnail_height() {
+        return this._thumbnail_height;
+      }
+    }
+    return new InlineQueryResultLocation(params);
+  }
 
-  InlineQueryResultPhoto(params = {}) { }
+  InlineQueryResultMpeg4Gif(params = {
+    type,
+    id,
+    mpeg4_url,
+    mpeg4_width,
+    mpeg4_height,
+    mpeg4_duration,
+    thumbnail_url,
+    thumbnail_mime_type,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultMpeg4Gif {
+      constructor({
+        type,
+        id,
+        mpeg4_url,
+        mpeg4_width,
+        mpeg4_height,
+        mpeg4_duration,
+        thumbnail_url,
+        thumbnail_mime_type,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.mpeg4_url = mpeg4_url;
+        this.mpeg4_width = mpeg4_width;
+        this.mpeg4_height = mpeg4_height;
+        this.mpeg4_duration = mpeg4_duration;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_mime_type = thumbnail_mime_type;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get mpeg4_url() {
+        return this._mpeg4_url;
+      }
+      get mpeg4_width() {
+        return this._mpeg4_width;
+      }
+      get mpeg4_height() {
+        return this._mpeg4_height;
+      }
+      get mpeg4_duration() {
+        return this._mpeg4_duration;
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_mime_type() {
+        return this._thumbnail_mime_type;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultMpeg4Gif(params);
+  }
+  InlineQueryResultPhoto(params = {
+    type,
+    id,
+    photo_url,
+    thumbnail_url,
+    photo_width,
+    photo_height,
+    title,
+    description,
+    caption,
+    parse_mode,
+    caption_entities,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultPhoto {
+      constructor({
+        type,
+        id,
+        photo_url,
+        thumbnail_url,
+        photo_width,
+        photo_height,
+        title,
+        description,
+        caption,
+        parse_mode,
+        caption_entities,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.photo_url = photo_url;
+        this.thumbnail_url = thumbnail_url;
+        this.photo_width = photo_width;
+        this.photo_height = photo_height;
+        this.title = title;
+        this.description = description;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get photo_url() {
+        return this._photo_url;
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get photo_width() {
+        return this._photo_width;
+      }
+      get photo_height() {
+        return this._photo_height;
+      }
+      get title() {
+        return this._title;
+      }
+      get description() {
+        return this._description;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultPhoto(params);
+  }
 
-  InlineQueryResultVenue(params = {}) { }
+  InlineQueryResultVenue(params = {
+    type,
+    id,
+    latitude,
+    longitude,
+    title,
+    address,
+    foursquare_id,
+    foursquare_type,
+    google_place_id,
+    google_place_type,
+    reply_markup,
+    input_message_content,
+    thumbnail_url,
+    thumbnail_width,
+    thumbnail_height
+  }) {
+    class InlineQueryResultVenue {
+      constructor({
+        type,
+        id,
+        latitude,
+        longitude,
+        title,
+        address,
+        foursquare_id,
+        foursquare_type,
+        google_place_id,
+        google_place_type,
+        reply_markup,
+        input_message_content,
+        thumbnail_url,
+        thumbnail_width,
+        thumbnail_height
+      }) {
+        this.type = type;
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.title = title;
+        this.address = address;
+        this.foursquare_id = foursquare_id;
+        this.foursquare_type = foursquare_type;
+        this.google_place_id = google_place_id;
+        this.google_place_type = google_place_type;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+        this.thumbnail_url = thumbnail_url;
+        this.thumbnail_width = thumbnail_width;
+        this.thumbnail_height = thumbnail_height;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get latitude() {
+        return this._latitude;
+      }
+      get longitude() {
+        return this._longitude;
+      }
+      get title() {
+        return this._title;
+      }
+      get address() {
+        return this._address;
+      }
+      get foursquare_id() {
+        return this._foursquare_id;
+      }
+      get foursquare_type() {
+        return this._foursquare_type;
+      }
+      get google_place_id() {
+        return this._google_place_id;
+      }
+      get google_place_type() {
+        return this._google_place_type;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get thumbnail_width() {
+        return this._thumbnail_width;
+      }
+      get thumbnail_height() {
+        return this._thumbnail_height;
+      }
+    }
+    return new InlineQueryResultVenue(params);
+  }
 
-  InlineQueryResultVideo(params = {}) { }
+  InlineQueryResultVideo(params = {
+    type,
+    id,
+    video_url,
+    mime_type,
+    thumbnail_url,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    video_width,
+    video_height,
+    video_duration,
+    description,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultVideo {
+      constructor({
+        type,
+        id,
+        video_url,
+        mime_type,
+        thumbnail_url,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        video_width,
+        video_height,
+        video_duration,
+        description,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.video_url = video_url;
+        this.mime_type = mime_type;
+        this.thumbnail_url = thumbnail_url;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.video_width = video_width;
+        this.video_height = video_height;
+        this.video_duration = video_duration;
+        this.description = description;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get video_url() {
+        return this._video_url;
+      }
+      get mime_type() {
+        return this._mime_type;
+      }
+      get thumbnail_url() {
+        return this._thumbnail_url;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get video_width() {
+        return this._video_width;
+      }
+      get video_height() {
+        return this._video_height;
+      }
+      get video_duration() {
+        return this._video_duration;
+      }
+      get description() {
+        return this._description;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultVideo(params);
+  }
 
-  InlineQueryResultVoice(params = {}) { }
+  InlineQueryResultVoice(params = {
+    type,
+    id,
+    voice_url,
+    title,
+    caption,
+    parse_mode,
+    caption_entities,
+    voice_duration,
+    reply_markup,
+    input_message_content
+  }) {
+    class InlineQueryResultVoice {
+      constructor({
+        type,
+        id,
+        voice_url,
+        title,
+        caption,
+        parse_mode,
+        caption_entities,
+        voice_duration,
+        reply_markup,
+        input_message_content
+      }) {
+        this.type = type;
+        this.id = id;
+        this.voice_url = voice_url;
+        this.title = title;
+        this.caption = caption;
+        this.parse_mode = parse_mode;
+        this.caption_entities = caption_entities;
+        this.voice_duration = voice_duration;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+      }
+      get type() {
+        return this._type;
+      }
+      get id() {
+        return this._id;
+      }
+      get voice_url() {
+        return this._voice_url;
+      }
+      get title() {
+        return this._title;
+      }
+      get caption() {
+        return this._caption;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get caption_entities() {
+        return this._caption_entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get voice_duration() {
+        return this._voice_duration;
+      }
+      get reply_markup() {
+        return new Type().InlineKeyboardMarkup(this._reply_markup);
+      }
+      get input_message_content() {
+        return new Type().InputMessageContent(this._input_message_content);
+      }
+    }
+    return new InlineQueryResultVoice(params);
+  }
 
-  InputMessageContent(params = {}) { }
+  InputMessageContent(params) {
+    if (params.message_text) {
+      return new Type().InputMessageContent(params);
+    }
+    if (params.address) {
+      return new Type().InputVenueMessageContent(params);
+    }
+    if (params.phone_number) {
+      return new Type().InputContactMessageContent(params);
+    }
+    if (params.payload) {
+      return new Type().InputInvoiceMessageContent(params);
+    }
+    if (!params.address) {
+      return new Type().InputLocationMessageContent(params);
+    }
+  }
 
-  InputTextMessageContent(params = {}) { }
+  InputTextMessageContent(params = {
+    message_text,
+    parse_mode,
+    entities,
+    disable_web_page_preview
+  }) {
+    class InputTextMessageContent {
+      constructor({
+        message_text,
+        parse_mode,
+        entities,
+        disable_web_page_preview
+      }) {
+        this.message_text = message_text;
+        this.parse_mode = parse_mode;
+        this.entities = entities;
+        this.disable_web_page_preview = disable_web_page_preview;
+      }
+      get message_text() {
+        return this._message_text;
+      }
+      get parse_mode() {
+        return this._parse_mode;
+      }
+      get entities() {
+        return this._entities.map(element => {
+          return new Type().MessageEntity(element);
+        });
+      }
+      get disable_web_page_preview() {
+        return this._disable_web_page_preview;
+      }
+    }
+    return new InputTextMessageContent(params);
+  }
 
-  InputLocationMessageContent(params = {}) { }
+  InputLocationMessageContent(params = {
+    latitude,
+    longitude,
+    horizontal_accuracy,
+    live_period,
+    heading,
+    proximity_alert_radius
+  }) {
+    class InputLocationMessageContent {
+      constructor({
+        latitude,
+        longitude,
+        horizontal_accuracy,
+        live_period,
+        heading,
+        proximity_alert_radius
+      }) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.horizontal_accuracy = horizontal_accuracy;
+        this.live_period = live_period;
+        this.heading = heading;
+        this.proximity_alert_radius = proximity_alert_radius;
+      }
+      get latitude() {
+        return this._latitude;
+      }
+      get longitude() {
+        return this._longitude;
+      }
+      get horizontal_accuracy() {
+        return this._horizontal_accuracy;
+      }
+      get live_period() {
+        return this._live_period;
+      }
+      get heading() {
+        return this._heading;
+      }
+      get proximity_alert_radius() {
+        return this._proximity_alert_radius;
+      }
+    }
+    return new InputLocationMessageContent(params);
+  }
 
-  InputVenueMessageContent(params = {}) { }
+  InputVenueMessageContent(params = {
+    latitude,
+    longitude,
+    title,
+    address,
+    foursquare_id,
+    foursquare_type,
+    google_place_id,
+    google_place_type
+  }) {
+    class InputVenueMessageContent {
+      constructor({
+        latitude,
+        longitude,
+        title,
+        address,
+        foursquare_id,
+        foursquare_type,
+        google_place_id,
+        google_place_type
+      }) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.title = title;
+        this.address = address;
+        this.foursquare_id = foursquare_id;
+        this.foursquare_type = foursquare_type;
+        this.google_place_id = google_place_id;
+        this.google_place_type = google_place_type;
+      }
+      get latitude() {
+        return this._latitude;
+      }
+      get longitude() {
+        return this._longitude;
+      }
+      get title() {
+        return this._title;
+      }
+      get address() {
+        return this._address;
+      }
+      get foursquare_id() {
+        return this._foursquare_id;
+      }
+      get foursquare_type() {
+        return this._foursquare_type;
+      }
+      get google_place_id() {
+        return this._google_place_id;
+      }
+      get google_place_type() {
+        return this._google_place_type;
+      }
+    }
+    return new InputVenueMessageContent(params);
+  }
 
-  InputContactMessageContent(params = {}) { }
+  InputContactMessageContent(params = {
+    phone_number,
+    first_name,
+    last_name,
+    vcard
+  }) {
+    class InputContactMessageContent {
+      constructor({
+        phone_number,
+        first_name,
+        last_name,
+        vcard
+      }) {
+        this.phone_number = phone_number;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.vcard = vcard;
+      }
+      get phone_number() {
+        return this._phone_number;
+      }
+      get first_name() {
+        return this._first_name;
+      }
+      get last_name() {
+        return this._last_name;
+      }
+      get vcard() {
+        return this._vcard;
+      }
+    }
+    return new InputContactMessageContent(params);
+  }
 
-  InputInvoiceMessageContent(params = {}) { }
+  InputInvoiceMessageContent(params = {
+    title,
+    description,
+    payload,
+    provider_token,
+    currency,
+    prices,
+    max_tip_amount,
+    suggested_tip_amounts,
+    provider_data,
+    photo_url,
+    photo_size,
+    photo_width,
+    photo_height,
+    need_name,
+    need_phone_number,
+    need_email,
+    need_shipping_address,
+    send_phone_number_to_provider,
+    send_email_to_provider,
+    is_flexible
+  }) {
+    class InputInvoiceMessageContent {
+      constructor({
+        title,
+        description,
+        payload,
+        provider_token,
+        currency,
+        prices,
+        max_tip_amount,
+        suggested_tip_amounts,
+        provider_data,
+        photo_url,
+        photo_size,
+        photo_width,
+        photo_height,
+        need_name,
+        need_phone_number,
+        need_email,
+        need_shipping_address,
+        send_phone_number_to_provider,
+        send_email_to_provider,
+        is_flexible
+      }) {
+        this.title = title;
+        this.description = description;
+        this.payload = payload;
+        this.provider_token = provider_token;
+        this.currency = currency;
+        this.prices = prices;
+        this.max_tip_amount = max_tip_amount;
+        this.suggested_tip_amounts = suggested_tip_amounts;
+        this.provider_data = provider_data;
+        this.photo_url = photo_url;
+        this.photo_size = photo_size;
+        this.photo_width = photo_width;
+        this.photo_height = photo_height;
+        this.need_name = need_name;
+        this.need_phone_number = need_phone_number;
+        this.need_email = need_email;
+        this.need_shipping_address = need_shipping_address;
+        this.send_phone_number_to_provider = send_phone_number_to_provider;
+        this.send_email_to_provider = send_email_to_provider;
+        this.is_flexible = is_flexible;
+      }
+      get title() {
+        return this._title;
+      }
+      get description() {
+        return this._description;
+      }
+      get payload() {
+        return this._payload;
+      }
+      get provider_token() {
+        return this._provider_token;
+      }
+      get currency() {
+        return this._currency;
+      }
+      get prices() {
+        return this._prices.map(element => {
+          return new Type().LabeledPrice(element);
+        });
+      }
+      get max_tip_amount() {
+        return this._max_tip_amount;
+      }
+      get suggested_tip_amounts() {
+        return this._suggested_tip_amounts.map(element => {
+          return element;
+        });
+      }
+      get provider_data() {
+        return this._provider_data;
+      }
+      get photo_url() {
+        return this._photo_url;
+      }
+      get photo_size() {
+        return this._photo_size;
+      }
+      get photo_width() {
+        return this._photo_width;
+      }
+      get photo_height() {
+        return this._photo_height;
+      }
+      get need_name() {
+        return this._need_name;
+      }
+      get need_phone_number() {
+        return this._need_phone_number;
+      }
+      get need_email() {
+        return this._need_email;
+      }
+      get need_shipping_address() {
+        return this._need_shipping_address;
+      }
+      get send_phone_number_to_provider() {
+        return this._send_phone_number_to_provider;
+      }
+      get send_email_to_provider() {
+        return this._send_email_to_provider;
+      }
+      get is_flexible() {
+        return this._is_flexible;
+      }
+    }
+    return new InputInvoiceMessageContent(params);
+  }
 
-  ChosenInlineResult(params = {}) { }
+  ChosenInlineResult(params = {
+    result_id,
+    from,
+    location,
+    inline_message_id,
+    query
+  }) {
+    class ChosenInlineResult {
+      constructor({
+        result_id,
+        from,
+        location,
+        inline_message_id,
+        query
+      }) {
+        this.result_id = result_id;
+        this.from = from;
+        this.location = location;
+        this.inline_message_id = inline_message_id;
+        this.query = query;
+      }
+      get result_id() {
+        return this._result_id;
+      }
+      get from() {
+        return new Type().User(this._from);
+      }
+      get location() {
+        return new Type().Location(this._location);
+      }
+      get inline_message_id() {
+        return this._inline_message_id;
+      }
+      get query() {
+        return this._query;
+      }
+    }
+    return new ChosenInlineResult(params);
+  }
 
-  SentWebAppMessage(params = {}) { }
+  SentWebAppMessage(params = {
+    inline_message_id
+  }) {
+    class SentWebAppMessage {
+      constructor({
+        inline_message_id
+      }) {
+        this.inline_message_id = inline_message_id;
+      }
+      get inline_message_id() {
+        return this._inline_message_id;
+      }
+    }
+    return new SentWebAppMessage(params);
+  }
 
   // Payments
 
-  LabeledPrice(params = {}) { }
-  Invoice(params = {}) { }
-  ShippingAddress(params = {}) { }
-  OrderInfo(params = {}) { }
-  ShippingOption(params = {}) { }
-  SuccessfulPayment(params = {}) { }
-  ShippingQuery(params = {}) { }
-  PreCheckoutQuery(params = {}) { }
+  LabeledPrice(params = {
+    label,
+    amount
+  }) {
+    class LabeledPrice {
+      constructor({
+        label,
+        amount
+      }) {
+        this.label = label;
+        this.amount = amount;
+      }
+      get label() {
+        return this._label;
+      }
+      get amount() {
+        return this._amount;
+      }
+    }
+    return new LabeledPrice(params);
+  }
+
+  Invoice(params = {
+    title,
+    description,
+    start_parameter,
+    currency,
+    total_amount
+  }) {
+    class Invoice {
+      constructor({
+        title,
+        description,
+        start_parameter,
+        currency,
+        total_amount
+      }) {
+        this.title = title;
+        this.description = description;
+        this.start_parameter = start_parameter;
+        this.currency = currency;
+        this.total_amount = total_amount;
+      }
+      get title() {
+        return this._title;
+      }
+      get description() {
+        return this._description;
+      }
+      get start_parameter() {
+        return this._start_parameter;
+      }
+      get currency() {
+        return this._currency;
+      }
+      get total_amount() {
+        return this._total_amount;
+      }
+    }
+    return new Invoice(params);
+  }
+
+  ShippingAddress(params = {
+    country_code,
+    state,
+    city,
+    street_line1,
+    street_line2,
+    post_code
+  }) {
+    class ShippingAddress {
+      constructor({
+        country_code,
+        state,
+        city,
+        street_line1,
+        street_line2,
+        post_code
+      }) {
+        this.country_code = country_code;
+        this.state = state;
+        this.city = city;
+        this.street_line1 = street_line1;
+        this.street_line2 = street_line2;
+        this.post_code = post_code;
+      }
+      get country_code() {
+        return this._country_code;
+      }
+      get state() {
+        return this._state;
+      }
+      get city() {
+        return this._city;
+      }
+      get street_line1() {
+        return this._street_line1;
+      }
+      get street_line2() {
+        return this._street_line2;
+      }
+      get post_code() {
+        return this._post_code;
+      }
+    }
+    return new ShippingAddress(params);
+  }
+
+  OrderInfo(params = {
+    name,
+    phone_number,
+    email,
+    shipping_address
+  }) {
+    class OrderInfo {
+      constructor({
+        name,
+        phone_number,
+        email,
+        shipping_address
+      }) {
+        this.name = name;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.shipping_address = shipping_address;
+      }
+      get name() {
+        return this._name;
+      }
+      get phone_number() {
+        return this._phone_number;
+      }
+      get email() {
+        return this._email;
+      }
+      get shipping_address() {
+        return new Type().ShippingAddress(this._shipping_address);
+      }
+    }
+    return new OrderInfo(params);
+  }
+
+  ShippingOption(params = {
+    id,
+    title,
+    prices
+  }) {
+    class ShippingOption {
+      constructor({
+        id,
+        title,
+        prices
+      }) {
+        this.id = id;
+        this.title = title;
+        this.prices = prices;
+      }
+      get id() {
+        return this._id;
+      }
+      get title() {
+        return this._title;
+      }
+      get prices() {
+        return this._prices.map(element => {
+          return new Type().LabeledPrice(element);
+        });
+      }
+    }
+    return new ShippingOption(params);
+  }
+
+  SuccessfulPayment(params = {
+    currency,
+    total_amount,
+    invoice_payload,
+    shipping_option_id,
+    order_info,
+    telegram_payment_charge_id,
+    provider_payment_charge_id
+  }) {
+    class SuccessfulPayment {
+      constructor({
+        currency,
+        total_amount,
+        invoice_payload,
+        shipping_option_id,
+        order_info,
+        telegram_payment_charge_id,
+        provider_payment_charge_id
+      }) {
+        this.currency = currency;
+        this.total_amount = total_amount;
+        this.invoice_payload = invoice_payload;
+        this.shipping_option_id = shipping_option_id;
+        this.order_info = order_info;
+        this.telegram_payment_charge_id = telegram_payment_charge_id;
+        this.provider_payment_charge_id = provider_payment_charge_id;
+      }
+      get currency() {
+        return this._currency;
+      }
+      get total_amount() {
+        return this._total_amount;
+      }
+      get invoice_payload() {
+        return this._invoice_payload;
+      }
+      get shipping_option_id() {
+        return this._shipping_option_id;
+      }
+      get order_info() {
+        return new Type().OrderInfo(this._order_info);
+      }
+      get telegram_payment_charge_id() {
+        return this._telegram_payment_charge_id;
+      }
+      get provider_payment_charge_id() {
+        return this._provider_payment_charge_id;
+      }
+    }
+    return new SuccessfulPayment(params);
+  }
+
+  ShippingQuery(params = {
+    id,
+    from,
+    invoice_payload,
+    shipping_address
+  }) {
+    class ShippingQuery {
+      constructor({
+        id,
+        from,
+        invoice_payload,
+        shipping_address
+      }) {
+        this.id = id;
+        this.from = from;
+        this.invoice_payload = invoice_payload;
+        this.shipping_address = shipping_address;
+      }
+      get id() {
+        return this._id;
+      }
+      get from() {
+        return new Type().User(this._from);
+      }
+      get invoice_payload() {
+        return this._invoice_payload;
+      }
+      get shipping_address() {
+        return new Type().ShippingAddress(this._shipping_address);
+      }
+    }
+    return new ShippingQuery(params);
+  }
+
+  PreCheckoutQuery(params = {
+    id,
+    from,
+    currency,
+    total_amount,
+    invoice_payload,
+    shipping_option_id,
+    order_info
+  }) {
+    class PreCheckoutQuery {
+      constructor({
+        id,
+        from,
+        currency,
+        total_amount,
+        invoice_payload,
+        shipping_option_id,
+        order_info
+      }) {
+        this.id = id;
+        this.from = from;
+        this.currency = currency;
+        this.total_amount = total_amount;
+        this.invoice_payload = invoice_payload;
+        this.shipping_option_id = shipping_option_id;
+        this.order_info = order_info;
+      }
+      get id() {
+        return this._id;
+      }
+      get from() {
+        return new Type().User(this._from);
+      }
+      get currency() {
+        return this._currency;
+      }
+      get total_amount() {
+        return this._total_amount;
+      }
+      get invoice_payload() {
+        return this._invoice_payload;
+      }
+      get shipping_option_id() {
+        return this._shipping_option_id;
+      }
+      get order_info() {
+        return new Type().OrderInfo(this._order_info);
+      }
+    }
+    return new PreCheckoutQuery(params);
+  }
 
   // Telegram Passport
 
-  PassportData(params = {}) { }
-  PassportFile(params = {}) { }
+  PassportData(params = {
+    data,
+    credentials
+  }) {
+    class PassportData {
+      constructor({
+        data,
+        credentials
+      }) {
+        this.data = data;
+        this.credentials = credentials;
+      }
+      get data() {
+        return this._data.map(element => {
+          return new Type().EncryptedPassportElement(element);
+        });
+      }
+      get credentials() {
+        return new Type().EncryptedCredentials(this._credentials);
+      }
+    }
+    return new PassportData(params);
+  }
+
+  PassportFile(params = {
+    file_id,
+    file_unique_id,
+    file_size,
+    file_date
+  }) {
+    class PassportFile {
+      constructor({
+        file_id,
+        file_unique_id,
+        file_size,
+        file_date
+      }) {
+        this.file_id = file_id;
+        this.file_unique_id = file_unique_id;
+        this.file_size = file_size;
+        this.file_date = file_date;
+      }
+      get file_id() {
+        return this._file_id;
+      }
+      get file_unique_id() {
+        return this._file_unique_id;
+      }
+      get file_size() {
+        return this._file_size;
+      }
+      get file_date() {
+        return this._file_date;
+      }
+    }
+    return new PassportFile(params);
+  }
 
   /**
    * @method EncryptedPassportElement
@@ -5200,8 +7518,8 @@ class Type {
         return this._email;
       }
       get files() {
-        return this._files.map(function (element) {
-          return new Type().PassportFile(element)
+        return this._files.map(element => {
+          return new Type().PassportFile(element);
         });
       }
       get front_side() {
@@ -5214,7 +7532,7 @@ class Type {
         return new Type().PassportFile(this._selfie);
       }
       get translation() {
-        return this._translation.map(function (element) {
+        return this._translation.map(element => {
           return new Type().PassportFile(element)
         });
       }
@@ -5261,13 +7579,232 @@ class Type {
     return new EncryptedCredentials(params);
   }
 
-  PassportElementError(params = {}) { }
-  PassportElementErrorDataField(params = {}) { }
-  PassportElementErrorFrontSide(params = {}) { }
-  PassportElementErrorReverseSide(params = {}) { }
-  PassportElementErrorSelfie(params = {}) { }
-  PassportElementErrorFile(params = {}) { }
-  PassportElementErrorFiles(params = {}) { }
+  PassportElementError(params) {
+    switch (params.source) {
+      case 'data':
+        return new Type().PassportElementErrorDataField(params);
+      case 'front_side':
+        return new Type().PassportElementErrorFrontSide(params);
+      case 'reverse_side':
+        return new Type().PassportElementErrorReverseSide(params);
+      case 'selfie':
+        return new Type().PassportElementErrorSelfie(params);
+      case 'file':
+        return new Type().PassportElementErrorFile(params);
+      case 'files':
+        return new Type().PassportElementErrorFiles(params);
+      case 'translation_file':
+        return new Type().PassportElementErrorTranslationFile(params);
+      case 'translation_files':
+        return new Type().PassportElementErrorTranslationFiles(params);
+      case 'unspecified':
+        return new Type().PassportElementErrorUnspecified(params);
+    }
+  }
+
+  PassportElementErrorDataField(params = {
+    source,
+    field_name,
+    data_hash,
+    message
+  }) {
+    class PassportElementErrorDataField {
+      constructor({
+        source,
+        field_name,
+        data_hash,
+        message
+      }) {
+        this.source = source;
+        this.field_name = field_name;
+        this.data_hash = data_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get field_name() {
+        return this._field_name;
+      }
+      get data_hash() {
+        return this._data_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorDataField(params);
+  }
+
+  PassportElementErrorFrontSide(params = {
+    source,
+    type,
+    file_hash,
+    message
+  }) {
+    class PassportElementErrorFrontSide {
+      constructor({
+        source,
+        type,
+        file_hash,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hash = file_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hash() {
+        return this._file_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorFrontSide(params);
+  }
+
+  PassportElementErrorReverseSide(params = {
+    source,
+    type,
+    file_hash,
+    message
+  }) {
+    class PassportElementErrorReverseSide {
+      constructor({
+        source,
+        type,
+        file_hash,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hash = file_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hash() {
+        return this._file_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorReverseSide(params);
+  }
+
+  PassportElementErrorSelfie(params = {
+    source,
+    type,
+    file_hash,
+    message
+  }) {
+    class PassportElementErrorSelfie {
+      constructor({
+        source,
+        type,
+        file_hash,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hash = file_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hash() {
+        return this._file_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorSelfie(params);
+  }
+
+  PassportElementErrorFile(params = {
+    source,
+    type,
+    file_hash,
+    message
+  }) {
+    class PassportElementErrorFile {
+      constructor({
+        source,
+        type,
+        file_hash,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hash = file_hash;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hash() {
+        return this._file_hash;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorFile(params);
+  }
+
+  PassportElementErrorFiles(params = {
+    source,
+    type,
+    file_hashes,
+    message
+  }) {
+    class PassportElementErrorFiles {
+      constructor({
+        source,
+        type,
+        file_hashes,
+        message
+      }) {
+        this.source = source;
+        this.type = type;
+        this.file_hashes = file_hashes;
+        this.message = message;
+      }
+      get source() {
+        return this._source;
+      }
+      get type() {
+        return this._type;
+      }
+      get file_hashes() {
+        return this._file_hashes;
+      }
+      get message() {
+        return this._message;
+      }
+    }
+    return new PassportElementErrorFiles(params);
+  }
 
   /**
    * @method PassportElementErrorTranslationFile
@@ -5442,7 +7979,7 @@ class Type {
         return this._description;
       }
       get photo() {
-        return this._photo.map(function (element) {
+        return this._photo.map(element => {
           return new Type().PhotoSize(element)
         });
       }
@@ -5450,7 +7987,7 @@ class Type {
         return this._text;
       }
       get text_entities() {
-        return this._text_entities.map(function (element) {
+        return this._text_entities.map(element => {
           return new Type().MessageEntity(element)
         });
       }
