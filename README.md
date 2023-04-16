@@ -1,24 +1,46 @@
-# TelegramApp
-Обёртка над Telegram Bot API для Google Apps Scripts
+# Dev version
 
-## Библиотека
+Код как "proof of concept" задумки. Еще не все типы данных проработаны.
 
-```
-1d-NtEFafrN7A3oXAeCCIqQNHBAQvfCaesr3JHZZc2ZO9RzP7E3_v5oEE
-```
+## Примеры
 
-## Пример использования
-
-Параметры метода заворачиваем в js-объект и передаём в метод в качестве единственного параметра. 
-
+Получим тексты последних сообщений в чате
 ```javascript
-var token = 'XXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXX'; // токен от @BotFather
-var tAPI = TelegramApp.auth(token);
-var message = {
-    chat_id: '11111111', // целевой чат
-    text: 'Hello World!' // cообщение
-}
-tAPI.sendMessage(message);
-```
+const token = '154354351435:AFGAFGAFDGFGAFDGAFGAFGAFGAFGAFDG';
+const myBot = new TelegramApp(token, true);
+const type = myBot.Type();
 
-Все названия методов и параметров аналогичны официальной документации - https://core.telegram.org/bots/api#available-methods
+function get_updates() {
+  var updates = myBot.getUpdates();
+  for (var i = 0; i < updates.length; i++) {
+    var message_text = type.Update(updates[i]).message.text;
+    Logger.log(message_text);
+  }
+}
+```
+- - -
+Отправим в чат сообщение с прикреплённой клавиатурой
+```javascript
+const token = '154354351435:AFGAFGAFDGFGAFDGAFGAFGAFGAFGAFDG';
+const myBot = new TelegramApp(token, true);
+const type = myBot.Type();
+
+function send_message() {
+  myBot.sendMessage({
+    chat_id: '123456,
+    text: 'Ку-ку!',
+    reply_markup: type.InlineKeyboardMarkup({
+      inline_keyboard: [[
+        type.InlineKeyboardButton({
+          text: 'Да!',
+          callback_data: 'yes'
+        }),
+        type.InlineKeyboardButton({
+          text: 'Нет!',
+          callback_data: 'no'
+        })
+      ]]
+    })
+  });
+}
+```
